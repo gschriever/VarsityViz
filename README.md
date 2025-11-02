@@ -1,2 +1,2 @@
 # VarsityViz
-Class Project Harvard CS1710: Visualization 
+Class Project for Harvard CS1710: Visualization 
