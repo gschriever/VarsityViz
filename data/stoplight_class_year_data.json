@@ -1,0 +1,92 @@
+{
+  "pre_nil": {
+    "era": "Pre-NIL (2019-2021)",
+    "total_transfers": 1500,
+    "lights": [
+      {
+        "class_year": "Freshman",
+        "position": 0,
+        "base_color": "#dc3545",
+        "count": 180,
+        "rate": 0.12,
+        "intensity": 0.12,
+        "description": "Rare transfers - adjustment period"
+      },
+      {
+        "class_year": "Sophomore",
+        "position": 1,
+        "base_color": "#fd7e14",
+        "count": 350,
+        "rate": 0.23,
+        "intensity": 0.23,
+        "description": "Limited transfers - building experience"
+      },
+      {
+        "class_year": "Junior",
+        "position": 2,
+        "base_color": "#ffc107",
+        "count": 520,
+        "rate": 0.35,
+        "intensity": 0.35,
+        "description": "Peak transfer year - seeking playing time"
+      },
+      {
+        "class_year": "Senior",
+        "position": 3,
+        "base_color": "#28a745",
+        "count": 450,
+        "rate": 0.3,
+        "intensity": 0.3,
+        "description": "Graduate transfers for final season"
+      }
+    ]
+  },
+  "post_nil": {
+    "era": "Post-NIL (2021-2024)",
+    "total_transfers": 2340,
+    "lights": [
+      {
+        "class_year": "Freshman",
+        "position": 0,
+        "base_color": "#dc3545",
+        "count": 420,
+        "rate": 0.18,
+        "intensity": 0.18,
+        "description": "NIL allows earlier career mobility",
+        "change_from_pre": 133.33333333333334
+      },
+      {
+        "class_year": "Sophomore",
+        "position": 1,
+        "base_color": "#fd7e14",
+        "count": 890,
+        "rate": 0.38,
+        "intensity": 0.38,
+        "description": "Significant jump - prime NIL opportunity",
+        "change_from_pre": 154.28571428571428,
+        "highlight": true
+      },
+      {
+        "class_year": "Junior",
+        "position": 2,
+        "base_color": "#ffc107",
+        "count": 680,
+        "rate": 0.29,
+        "intensity": 0.29,
+        "description": "High transfers but overshadowed by sophomores",
+        "change_from_pre": 30.76923076923077,
+        "highlight": true
+      },
+      {
+        "class_year": "Senior",
+        "position": 3,
+        "base_color": "#28a745",
+        "count": 350,
+        "rate": 0.15,
+        "intensity": 0.15,
+        "description": "Reduced - most transfers happen earlier now",
+        "change_from_pre": -22.22222222222222
+      }
+    ]
+  }
+}
