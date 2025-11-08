@@ -588,9 +588,14 @@
                 <h3>Visualization 1: Transfer Volume Over Time</h3>
                 <p>Line/Area chart showing transfer growth (2018-2024) with visible jump post-NIL</p>
             </div>
-            <div class="viz-placeholder">
-                <h3>Visualization 2: Transfers by Class Year</h3>
-                <p>Stacked bar chart comparing Pre-NIL vs Post-NIL transfer patterns</p>
+            <div id="class-year-viz" class="viz-container">
+                <div id="class-year-chart-area">
+                    <h3>Transfers by Class Year: Pre-NIL vs Post-NIL</h3>
+                    <!-- Chart will be rendered here by D3 -->
+                    <p class="figure-caption">
+                        Figure 3. Distribution of transfers across class years, comparing Pre-NIL and Post-NIL periods showing the shift toward earlier transfers.
+                    </p>
+                </div>
             </div>
         </section>
         
@@ -645,6 +650,7 @@
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/rising_insights.js"></script>
     <script src="js/stoplight.js"></script>
 </body>
 </html>

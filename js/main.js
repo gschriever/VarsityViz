@@ -200,7 +200,7 @@ function renderNCAATimeline(rawData) {
     const svg = chartArea
         .append("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("height", height + margin.top + margin.bottom + 5)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
     
