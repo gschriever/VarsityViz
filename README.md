@@ -1,23 +1,35 @@
-# Milestone 9: Prototype Website & Hook Visualization
+````markdown
+# VarsityViz: NIL Impact on College Athlete Transfers
 
 ## Overview
-This is the first working prototype for the VarsityViz project, demonstrating the NIL policy's impact on college athlete transfers through interactive D3 visualizations.
+Interactive D3 visualization project demonstrating the NIL policy's impact on college athlete transfers through vintage newspaper-style storytelling.
+
+**Current Version**: Rising Insights Update (December 2024)  
+**Initial Release**: Milestone 9 (October 2024)
 
 ## Project Structure
 
 ```
-Milestone 9/
+VarsityViz/
 ├── index.html          # Main webpage with narrative structure
 ├── css/
 │   └── style.css       # Newspaper-style styling
 ├── js/
-│   └── main.js         # D3 visualizations for Hook charts
+│   ├── main.js         # D3 visualizations for Hook charts (CFP & NCAA)
+│   ├── rising_insights.js  # Class year transfer visualization
+│   └── stoplight.js    # Traffic light visualization (Main Message)
 ├── data/
-│   ├── cfp_monthly_transfers.csv    # College Football monthly data
-│   └── ncaa_yearly_transfers.csv    # NCAA yearly aggregated data
+│   ├── cfp_monthly_transfers.csv         # College Football monthly data
+│   ├── cfp_position_monthly_transfers.csv # CFP data with position filtering
+│   ├── ncaa_yearly_transfers.csv         # NCAA yearly aggregated data
+│   ├── ncaa_sport_yearly_transfers.csv   # NCAA data with sport filtering
+│   ├── class_year_transfers.csv          # Class year comparison (Pre/Post-NIL)
+│   └── stoplight_class_year_data.json    # Traffic light data
 ├── notebooks/          # Analysis notebooks from MS6
 ├── export_data.py      # Script to generate CSV files for D3
-└── README.md           # This file
+├── start_server.sh     # Quick server startup script
+├── README.md           # This file
+└── CHANGES.md          # Detailed change history and updates
 ```
 
 ## Features Implemented
@@ -46,9 +58,16 @@ Milestone 9/
 
 ## How to Run
 
-### Option 1: Simple HTTP Server (Recommended)
+### Option 1: Quick Start Script (Recommended)
 ```bash
-cd "/Users/Gillian/Downloads/CS1017/Project Milestones/Milestone 9"
+cd /mnt/c/Users/Owner/OneDrive/The\ Folder/Junior/CS171/VarsityViz
+./start_server.sh
+```
+Then open http://localhost:8080 in your browser
+
+### Option 2: Python HTTP Server
+```bash
+cd "/path/to/VarsityViz"
 python -m http.server 8080
 ```
 Then open http://localhost:8080 in your browser
@@ -70,12 +89,29 @@ python export_data.py
 - Modern browser with ES6+ support
 - D3.js loaded via CDN (internet connection required)
 
-## Next Steps for Full Prototype
-1. Implement Rising Insights visualizations (Transfer Volume Over Time, Transfers by Class Year)
-2. Create Traffic Lights visualization for Main Message section
-3. Design Coach's Whiteboard visualization for Solution section
-4. Add interactive filtering and tooltips
-5. Polish styling and add animations
+## Implemented Features
+
+### ✅ Hook Visualization (Complete)
+- CFP Monthly Timeline with position filtering
+- NCAA Yearly Timeline with sport filtering
+- Newspaper-style two-column layout
+
+### ✅ Rising Insights Visualization (Complete)
+- **Class Year Transfer Chart**: Stacked bar chart comparing Pre-NIL vs Post-NIL transfers by class year
+- Shows dramatic shift toward earlier transfers (Sophomore surge: 154% increase)
+- Vintage newspaper styling with FIGURE label and striped background
+- Color-coded by class year with muted brown palette
+
+### 🚧 In Progress
+1. Transfer Volume Over Time visualization (Rising Insights section)
+2. Traffic Lights visualization for Main Message section
+3. Coach's Whiteboard visualization for Solution section
+
+### 📋 Future Enhancements
+- Add interactive tooltips
+- Implement smooth transitions and animations
+- Enhanced filtering capabilities
+- Mobile responsiveness improvements
 
 ## Team Members
 - Marco Gandola (marcogandola@college.harvard.edu)
@@ -91,4 +127,31 @@ python export_data.py
 - All data cleaning and analysis performed in notebooks
 - D3.js v7 used for all visualizations
 - Follows CS171 lab conventions and best practices
+
+## Version History
+
+### Current: Rising Insights Update (December 2024)
+- ✅ Added Class Year Transfer visualization with stacked bar chart
+- ✅ Implemented vintage newspaper styling for Rising Insights section
+- ✅ Created `rising_insights.js` module
+- ✅ Added `class_year_transfers.csv` data file
+- ✅ Enhanced CSS with FIGURE labels and striped backgrounds
+- 📊 Key Insight: Sophomore transfers surged 154% post-NIL
+
+### Milestone 9 Refinements (November 2024)
+- ✅ Enhanced athletic department design aesthetics
+- ✅ Fixed duplicate year labels in NCAA chart
+- ✅ Corrected x-axis label positioning
+- ✅ Added scoreboard-style visual elements
+
+### Milestone 9 Initial Release (October 2024)
+- ✅ Hook visualizations (CFP & NCAA timelines)
+- ✅ Newspaper-style website structure
+- ✅ Data pipeline and export scripts
+- ✅ Complete narrative framework
+
+For detailed change logs, see [CHANGES.md](CHANGES.md)
+
+
+````
 
