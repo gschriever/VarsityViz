@@ -34,6 +34,13 @@ function renderClassYearChart(rawData) {
     chartArea.select("svg").remove();
     chartArea.select(".chart-empty-state").remove();
     
+    // Create tooltip (or select existing one)
+    let tooltip = d3.select("body").select(".class-year-tooltip");
+    if (tooltip.empty()) {
+        tooltip = d3.select("body").append("div")
+            .attr("class", "class-year-tooltip");
+    }
+    
     if (!data.length) {
         chartArea.insert("p", ".figure-caption")
             .attr("class", "chart-empty-state")
@@ -86,7 +93,7 @@ function renderClassYearChart(rawData) {
         .nice()
         .range([chartHeight, 0]);
     
-    // Create bars
+    // Create bars with enhanced interactivity
     const groups = svg.selectAll(".layer")
         .data(stackedData)
         .enter()
@@ -104,18 +111,87 @@ function renderClassYearChart(rawData) {
         .attr("width", xScale.bandwidth())
         .attr("stroke", "white")
         .attr("stroke-width", 2)
+        .attr("class", d => `bar-segment ${d.data.period.toLowerCase().replace('-', '')}`)
         .style("filter", "drop-shadow(0px 2px 3px rgba(0,0,0,0.1))")
-        .on("mouseover", function(event, d) {
+        .style("cursor", "pointer")
+        .each(function(d) {
+            // Store additional data for tooltips
+            const classYear = d3.select(this.parentNode).datum().key;
+            const value = d[1] - d[0];
+            const total = d3.sum(classYears, cy => {
+                const item = data.find(item => item.period === d.data.period && item.class_year === cy);
+                return item ? item.transfer_count : 0;
+            });
+            const percentage = (value / total * 100).toFixed(1);
+            
             d3.select(this)
-                .transition()
+                .attr("data-class-year", classYear)
+                .attr("data-value", value)
+                .attr("data-total", total)
+                .attr("data-percentage", percentage)
+                .attr("data-period", d.data.period);
+        })
+        .on("mouseover", function(event, d) {
+            const rect = d3.select(this);
+            const classYear = rect.attr("data-class-year");
+            const value = +rect.attr("data-value");
+            const total = +rect.attr("data-total");
+            const percentage = rect.attr("data-percentage");
+            const period = rect.attr("data-period");
+            
+            // Highlight effect
+            rect.transition()
                 .duration(200)
-                .style("opacity", 0.8);
+                .attr("stroke-width", 3)
+                .style("filter", "drop-shadow(0px 4px 8px rgba(0,0,0,0.3))");
+            
+            // Calculate change if Post-NIL
+            let changeInfo = "";
+            if (period === "Post-NIL") {
+                const preNilItem = data.find(item => 
+                    item.period === "Pre-NIL" && item.class_year === classYear
+                );
+                if (preNilItem) {
+                    const change = ((value - preNilItem.transfer_count) / preNilItem.transfer_count * 100);
+                    const changeClass = change >= 0 ? 'change-positive' : 'change-negative';
+                    const changeSymbol = change >= 0 ? '+' : '';
+                    const arrow = change >= 0 ? '↑' : '↓';
+                    
+                    changeInfo = `<br><span class="${changeClass}">${arrow} ${changeSymbol}${change.toFixed(1)}% vs Pre-NIL</span>`;
+                    
+                    // Add special note for Sophomore surge
+                    if (classYear === "Sophomore") {
+                        changeInfo += '<br><em style="color:#ff9800;">⭐ Biggest shift - transfers moved earlier</em>';
+                    }
+                }
+            }
+            
+            // Show tooltip
+            tooltip.html(`
+                <strong>${classYear} (${period})</strong><br>
+                ${value.toLocaleString()} transfers<br>
+                <span style="color:#999;">${percentage}% of ${period.toLowerCase()} transfers</span>
+                ${changeInfo}
+            `)
+            .classed("visible", true)
+            .style("left", (event.pageX + 15) + "px")
+            .style("top", (event.pageY - 15) + "px");
         })
         .on("mouseout", function(event, d) {
+            // Reset highlight
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("opacity", 1);
+                .attr("stroke-width", 2)
+                .style("filter", "drop-shadow(0px 2px 3px rgba(0,0,0,0.1))");
+            
+            // Hide tooltip
+            tooltip.classed("visible", false);
+        })
+        .on("mousemove", function(event) {
+            tooltip
+                .style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY - 15) + "px");
         });
     
     // Add value labels on bars
