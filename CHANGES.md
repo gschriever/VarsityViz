@@ -1,5 +1,125 @@
 # VarsityViz Project Change History
 
+## Update: Volume Insights Visualization (December 2024)
+
+### New Feature: Cumulative Transfer Growth S-Curve ✓
+
+**Overview:**
+Implemented the first visualization in the "Rising Insights" section, showing cumulative transfer volume over 36 months (Aug 2020 - Jul 2023) to reveal the acceleration pattern post-NIL. This complements the existing CFP monthly timeline by showing cumulative growth trajectory rather than monthly variation.
+
+**Files Added:**
+- `js/volume_insights.js` - New D3 visualization module for cumulative S-curve chart
+- `README_VOLUME_INSIGHTS.md` - Complete documentation for volume visualization
+
+**Files Modified:**
+- `index.html` - Added visualization container between narrative text and class year chart
+- `css/style.css` - Added newspaper-style formatting for volume chart area
+- `js/rising_insights.js` - Added unique `.class-year-svg` class to prevent CSS conflicts
+- `CHANGES.md` - This file (added volume insights documentation)
+
+**Visualization Details:**
+- **Type**: Cumulative S-curve line chart with area fill gradient
+- **Data Source**: `data/cfp_monthly_transfers.csv` (36 months, existing file)
+- **Dimensions**: 600×320px with margins {top: 30, right: 40, bottom: 50, left: 70}
+- **Color Scheme**: 
+  - Line: #2c5f8d (blue, 2.5px stroke)
+  - Gradient: Green (#5cb85c) → Red (#d9534f)
+  - NIL marker: Red (#c9302c) vertical dashed line
+- **Key Features**:
+  - Smooth cumulative growth curve (curveMonotoneX)
+  - Strategic milestone markers at 1k, 2k, 3k, 4k, 5k thresholds
+  - Interactive hover on all 36 monthly data points
+  - Rate comparison annotation box (bottom-right)
+  - NIL policy marker line at July 1, 2021
+
+**Design Philosophy:**
+Maintained vintage newspaper aesthetic consistent with Hook and Rising Insights visualizations:
+- Aged paper background (#f9f2e6)
+- "FIGURE 2" tag label in upper-left corner
+- Black border frame (1px solid #111)
+- Oblique striped pattern background (45° repeating-linear-gradient)
+- Serif fonts (Old Standard TT) for titles and captions
+- Dashed border around SVG chart area (2px dashed #333)
+- Figure caption positioned inside the frame
+
+**Data Insights Revealed:**
+- **Pre-NIL Rate**: ~159 transfers/month (11 months: Aug 2020 - Jun 2021)
+- **Post-NIL Rate**: ~179 transfers/month (25 months: Jul 2021 - Jul 2023)
+- **Acceleration**: +13% faster monthly transfer rate post-NIL
+- **Cumulative Total**: 6,222+ transfers over 36-month period
+- **Growth Pattern**: S-curve shows exponential acceleration starting July 2021
+- **Milestone Timing**: 5,000-transfer threshold crossed rapidly in post-NIL period
+
+**Interactive Features:**
+1. **Milestone Markers**: 
+   - White dots (r=4) with blue stroke at cumulative thresholds
+   - Positioned at actual data points where threshold was first crossed
+   - Hover effect: Grows to r=6, stroke-width increases to 3
+   - Shows month/year when milestone was reached
+
+2. **Universal Hover System**:
+   - Invisible circles (r=6) on all 36 monthly data points
+   - Tooltip displays:
+     * Month/year (e.g., "August 2020")
+     * Cumulative total (e.g., "3,245 transfers")
+     * Monthly transfer count (e.g., "156 transfers")
+     * Average period rate (Pre-NIL: 159/mo or Post-NIL: 179/mo)
+     * Growth percentage from previous month (Post-NIL only)
+   - Smooth mouse tracking with offset positioning
+
+3. **Rate Annotation Box**:
+   - Bottom-right corner placement
+   - White background with blue border (2px solid #2c5f8d)
+   - Shows Pre-NIL rate (green), Post-NIL rate (red), percentage change (blue)
+   - Format: "Pre-NIL: 159/mo | Post-NIL: 179/mo | +13% faster"
+   - Scoped CSS prevents bleeding to other visualizations
+
+**Technical Implementation:**
+- D3.js v7 for rendering and interactions
+- `d3.scaleTime()` for x-axis (monthly dates)
+- `d3.scaleLinear()` for y-axis (cumulative counts)
+- `d3.line()` and `d3.area()` generators with smooth curve interpolation
+- Linear gradient definition from green (Pre-NIL) to red (Post-NIL)
+- Running sum calculation for cumulative totals
+- Data parsing handles "True"/"False" strings from CSV (capital T/F)
+- Milestone calculation: `cumulativeData.find(d => d.cumulative >= milestone)`
+- Tooltip formatting with `d3.timeFormat("%B %Y")`
+
+**Problem Resolution:**
+1. **Initial Redundancy Concern**: 
+   - Issue: Proposed line chart duplicated existing CFP timeline
+   - Solution: Chose cumulative S-curve approach for different perspective
+   
+2. **Data Parsing Failure**:
+   - Issue: `post_nil` filtering not working due to "True" vs "true" mismatch
+   - Solution: Changed to `d.post_nil === 'True' || d.post_nil === 'true' || d.post_nil === true`
+   
+3. **NaN Values in Annotation**:
+   - Issue: Post-NIL rate showing as "NaN/mo"
+   - Solution: Added safety checks `preNilData.length > 0 ? d3.mean(...) : 0`
+   
+4. **Duplicate Annotation Boxes**:
+   - Issue: Annotation box appearing in both volume chart and class year chart
+   - Solution: Added unique SVG classes (`.volume-svg` and `.class-year-svg`) and scoped CSS selectors
+   
+5. **Milestone Marker Accuracy**:
+   - Issue: Original markers at arbitrary 1k intervals didn't match actual data
+   - Solution: Changed to find first data point crossing each threshold
+   - Result: Milestones show actual month when cumulative total reached threshold
+
+**Git Commit:**
+- Commit Hash: [Pending]
+- Message: "Implement cumulative transfer growth visualization (Viz 1) with interactive data points"
+- Files Changed: 4 (1 new, 3 modified)
+- Insertions: ~400 lines
+
+**Figure Numbering Update:**
+- Figure 1: CFP Monthly Timeline (Hook section, unchanged)
+- **Figure 2: Cumulative Transfer Volume** (NEW - Rising Insights section)
+- Figure 3: Class Year Distribution (Rising Insights section, renumbered from Fig 2)
+
+---
+
 ## Update: Rising Insights Implementation (December 2024)
 
 ### New Feature: Class Year Transfer Visualization ✓

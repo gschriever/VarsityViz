@@ -304,6 +304,32 @@ h4 {
     font-weight: 600;
 }
 
+/* Volume Chart Tooltip */
+.volume-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+}
+
+.volume-tooltip.visible {
+    opacity: 1;
+}
+
+.volume-tooltip strong {
+    color: #5cb85c;
+    font-size: 1rem;
+}
+
 /* ============================================================================
    VISUALIZATION PLACEHOLDERS
    ============================================================================ */
@@ -433,6 +459,88 @@ h4 {
 
 #class-year-chart-area .legend text {
     fill: var(--primary-color);
+}
+
+/* Volume Chart Area - Newspaper Styling */
+#volume-chart-area {
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fdf7ec;
+    padding: 10px 10px 12px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 22px
+    );
+    border: 1px solid #111;
+    position: relative;
+}
+
+#volume-chart-area::before {
+    content: "FIGURE";
+    position: absolute;
+    top: -11px;
+    left: 10px;
+    background: #f6f1e7;
+    padding: 0 6px;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+#volume-chart-area h3 {
+    font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+    margin: 4px 0 8px;
+    width: 100%;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #c8c2b8;
+}
+
+#volume-chart-area svg {
+    border: 1px dashed #777;
+    background: repeating-linear-gradient(
+        45deg,
+        #f9f2e6,
+        #f9f2e6 4px,
+        #f3e6d3 4px,
+        #f3e6d3 8px
+    );
+    padding: 10px;
+    overflow: visible;
+}
+
+#volume-chart-area .figure-caption {
+    font-size: 0.75rem;
+    margin-top: 6px;
+    line-height: 1.3;
+    padding: 0 10px;
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+}
+
+#volume-chart-area .axis text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    fill: var(--secondary-color);
+}
+
+#volume-chart-area .cumulative-line {
+    filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.2));
+}
+
+#volume-chart-area .rate-annotation {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .placeholder-content {

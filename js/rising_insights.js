@@ -51,6 +51,7 @@ function renderClassYearChart(rawData) {
     // Create SVG - insert after h3 but before caption
     const svg = chartArea
         .insert("svg", ".figure-caption")
+        .attr("class", "class-year-svg")
         .attr("width", chartWidth + chartMargin.left + chartMargin.right + 80)
         .attr("height", chartHeight + chartMargin.top + chartMargin.bottom + 20)
         .style("display", "block")

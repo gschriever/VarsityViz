@@ -584,9 +584,14 @@
             <p class="narrative-text emphasis">
                 Athletes Transfer More and Sooner
             </p>
-            <div class="viz-placeholder">
-                <h3>Visualization 1: Transfer Volume Over Time</h3>
-                <p>Line/Area chart showing transfer growth (2018-2024) with visible jump post-NIL</p>
+            <div id="volume-viz" class="viz-container">
+                <div id="volume-chart-area">
+                    <h3>Cumulative Transfer Growth: Accelerating Post-NIL</h3>
+                    <!-- Chart will be rendered here by D3 -->
+                    <p class="figure-caption">
+                        Figure 2. Cumulative transfer volume over time, showing the dramatic acceleration in transfer rates following the July 2021 NIL policy implementation.
+                    </p>
+                </div>
             </div>
             <div id="class-year-viz" class="viz-container">
                 <div id="class-year-chart-area">
@@ -650,6 +655,7 @@
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/volume_insights.js"></script>
     <script src="js/rising_insights.js"></script>
     <script src="js/stoplight.js"></script>
 </body>
