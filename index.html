@@ -513,6 +513,370 @@
                 gap: 40px;
             }
         }
+
+        /* === Coach's Whiteboard Styles === */
+        #whiteboard-section {
+            margin: 48px 0;
+            padding: 28px;
+            background: linear-gradient(135deg, #f7f5ef 0%, #f1ede4 40%, #f7f5ef 100%);
+            border: 1px solid #cfc2a4;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 12px 28px rgba(0, 0, 0, 0.12);
+            border-radius: 18px;
+            position: relative;
+        }
+
+        #whiteboard-section::after {
+            content: "";
+            position: absolute;
+            inset: 12px 16px;
+            border: 1px dashed rgba(0, 0, 0, 0.08);
+            pointer-events: none;
+        }
+
+        .whiteboard-header {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 24px;
+        }
+
+        .whiteboard-header h3 {
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 8px;
+        }
+
+        .whiteboard-header p {
+            font-size: 0.95rem;
+            color: #5c5242;
+            line-height: 1.6;
+        }
+
+        .whiteboard-controls {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 0 auto 24px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 999px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .whiteboard-button {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 10px 24px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #5a503f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .whiteboard-button:hover,
+        .whiteboard-button:focus-visible {
+            border-color: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .whiteboard-button.active {
+            background: #1f1f1f;
+            color: #f1f1f1;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        .whiteboard-layout {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .whiteboard {
+            background: linear-gradient(135deg, #0b4127 0%, #0b3822 100%);
+            border: 6px solid #f8f8f8;
+            border-radius: 28px;
+            box-shadow: 0 24px 36px rgba(0, 0, 0, 0.22), inset 0 0 0 3px rgba(19, 63, 40, 0.8);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whiteboard::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border-radius: 24px;
+            background: rgba(24, 82, 48, 0.28);
+            filter: blur(12px);
+            pointer-events: none;
+        }
+
+        #whiteboard-drawing {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .whiteboard-callouts {
+            background: #fffdfa;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .whiteboard-legend {
+            display: grid;
+            grid-template-columns: auto;
+            gap: 8px;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, rgba(20, 42, 34, 0.9), rgba(14, 58, 36, 0.9));
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f4f4f4;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .legend-title {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+        }
+
+        .legend-dot.fr {
+            background: #e74c3c;
+        }
+
+        .legend-dot.so {
+            background: #f59e0b;
+        }
+
+        .legend-dot.jr {
+            background: #f4d35e;
+        }
+
+        .legend-dot.sr {
+            background: #34a853;
+        }
+
+        .callout-title {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #433b2f;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 6px;
+        }
+
+        .callout-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .callout-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #4f4637;
+            line-height: 1.6;
+        }
+
+        .callout-item::before {
+            content: "✱";
+            color: #c2512d;
+            font-size: 1rem;
+            transform: translateY(1px);
+        }
+
+        .callout-note {
+            margin-top: auto;
+            background: linear-gradient(135deg, rgba(255, 239, 210, 0.9), rgba(255, 248, 231, 0.95));
+            border: 1px solid rgba(194, 81, 45, 0.25);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.85rem;
+            color: #5a4a36;
+            line-height: 1.4;
+        }
+
+        /* Player + Route styling (hooked in via JS) */
+        .chalk-line {
+            stroke: rgba(255, 255, 255, 0.82);
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-dasharray: 12 10;
+            fill: none;
+            filter: url(#chalkBlur);
+        }
+
+        .chalk-line.accent {
+            stroke: #f3c160;
+        }
+
+        .player-node circle {
+            stroke: #fff;
+            stroke-width: 3;
+            filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
+        }
+
+        .player-node text {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .player-node .player-label {
+            fill: #fefefe;
+            font-weight: bold;
+        }
+
+        .player-node.support .player-label,
+        .player-node.staff .player-label {
+            fill: #f5f5f5;
+        }
+
+        .player-node .player-caption {
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            font-size: 0.66rem;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            fill: #3c3428;
+        }
+
+        .player-node.staff circle {
+            fill: #222;
+        }
+
+        .player-node.support circle {
+            fill: #596475;
+        }
+
+        .player-node.year-fr circle {
+            fill: #e74c3c;
+        }
+
+        .player-node.year-so circle {
+            fill: #f59e0b;
+        }
+
+        .player-node.year-jr circle {
+            fill: #f4d35e;
+        }
+
+        .player-node.year-sr circle {
+            fill: #34a853;
+        }
+
+        .player-node.highlight circle {
+            stroke: rgba(255, 255, 255, 0.85);
+            stroke-width: 3;
+        }
+
+        .player-shadow {
+            fill: rgba(0, 0, 0, 0.06);
+            filter: blur(3px);
+        }
+
+        .endzone-label {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 1.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            fill: rgba(255, 255, 255, 0.82);
+            font-weight: 700;
+            opacity: 0.98;
+        }
+
+        .chalk-zone {
+            fill: rgba(194, 81, 45, 0.12);
+            stroke: rgba(194, 81, 45, 0.4);
+            stroke-width: 2;
+            stroke-dasharray: 10 8;
+        }
+
+        .chalk-zone.safe {
+            fill: rgba(72, 160, 120, 0.15);
+            stroke: rgba(72, 160, 120, 0.45);
+        }
+
+        .yard-number {
+            font-family: "Cinzel", "Times New Roman", serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            fill: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 900px) {
+            .whiteboard-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .whiteboard-controls {
+                left: 0;
+                transform: none;
+                display: flex;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #whiteboard-section {
+                padding: 20px;
+            }
+
+            .whiteboard-controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .whiteboard-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -632,17 +996,51 @@
             <p class="narrative-text">
                 Athletic departments must adapt: build relationships early, manage NIL strategically, and rethink retention programs.
             </p>
-            <div class="viz-placeholder playbook-style">
-                <h3>Coach's Whiteboard</h3>
-                <div class="placeholder-content">
-                    <div class="playbook-box">
-                        <h4>Old Game Plan</h4>
-                        <p>Manage junior/senior retention</p>
+            <div id="whiteboard-section">
+                <div class="whiteboard-header">
+                    <h3>The Transfer Portal Playbook</h3>
+                    <p>Toggle the set to see how athletic departments have to redraw their playbook for the NIL era.</p>
+                </div>
+                <div class="whiteboard-controls" role="group" aria-label="Whiteboard play selection">
+                    <button type="button" class="whiteboard-button active" data-play="legacy" aria-pressed="true">
+                        Pre-NIL
+                    </button>
+                    <button type="button" class="whiteboard-button" data-play="nil" aria-pressed="false">
+                        Post-NIL
+                    </button>
+                </div>
+                <div class="whiteboard-layout">
+                    <div class="whiteboard">
+                        <svg id="whiteboard-drawing" viewBox="0 0 600 360" role="img" aria-label="Coach's whiteboard play diagram">
+                            <!-- Diagram rendered with JavaScript -->
+                        </svg>
                     </div>
-                    <div class="playbook-box">
-                        <h4>New Strategy</h4>
-                        <p>Build relationships early, manage NIL incentives, rethink athlete support programs</p>
-                    </div>
+                    <aside class="whiteboard-callouts" aria-live="polite">
+                        <div class="whiteboard-legend" aria-hidden="true">
+                            <span class="legend-title">Class Key</span>
+                            <div class="legend-items">
+                                <span class="legend-item"><span class="legend-dot fr"></span>Freshman</span>
+                                <span class="legend-item"><span class="legend-dot so"></span>Sophomore</span>
+                                <span class="legend-item"><span class="legend-dot jr"></span>Junior</span>
+                                <span class="legend-item"><span class="legend-dot sr"></span>Senior</span>
+                            </div>
+                        </div>
+                        <h4 class="callout-title">Pre-NIL Era</h4>
+                        <ul class="callout-list">
+                            <li class="callout-item">
+                                Athletic departments and coaches maintained tight control over transfer decisions, with athletes required to seek permission and face restrictions.
+                            </li>
+                            <li class="callout-item">
+                                Players had little leverage or financial incentive to transfer. Most decisions were driven by playing time or personal circumstances rather than strategic or financial motivations.
+                            </li>
+                            <li class="callout-item">
+                                Schools offered few resources to help athletes navigate the transfer process.
+                            </li>
+                        </ul>
+                        <div class="callout-note">
+                            <strong>Post-NIL Era</strong>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -658,5 +1056,6 @@
     <script src="js/volume_insights.js"></script>
     <script src="js/rising_insights.js"></script>
     <script src="js/stoplight.js"></script>
+    <script src="js/whiteboard.js"></script>
 </body>
 </html>
