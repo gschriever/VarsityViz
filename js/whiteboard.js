@@ -242,8 +242,7 @@
         const playersGroup = svg.append("g").attr("class", "players-group");
 
         const eraHeading = d3.select("#whiteboard-section .whiteboard-era-heading");
-        const preNilList = d3.select("#whiteboard-section .callout-list.pre-nil");
-        const postNilList = d3.select("#whiteboard-section .callout-list.post-nil");
+        const eraList = d3.select("#whiteboard-section .callout-list.era-bullets");
         const buttons = d3.selectAll(".whiteboard-button");
 
         const plays = {
@@ -352,21 +351,9 @@
         const lineGenerator = d3.line().curve(d3.curveCatmullRom.alpha(0.8));
 
         function updateCallouts(play) {
-            const isPost = play.id === "nil";
-            eraHeading.text(isPost ? "Post-NIL Era" : "Pre-NIL Era");
+            eraHeading.text(play.id === "nil" ? "Post-NIL Era" : "Pre-NIL Era");
 
-            const activeList = isPost ? postNilList : preNilList;
-            const inactiveList = isPost ? preNilList : postNilList;
-
-            // Clear the inactive list
-            inactiveList.selectAll("li")
-                .transition()
-                .duration(transitionDuration / 2)
-                .style("opacity", 0)
-                .remove();
-
-            // Render bullets for the active list
-            const items = activeList.selectAll("li")
+            const items = eraList.selectAll("li")
                 .data(play.callouts, d => d);
 
             items.join(
