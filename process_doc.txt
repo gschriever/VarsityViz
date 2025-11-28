@@ -1,0 +1,1280 @@
+https://docs.google.com/document/d/1NdHjVekRRhoWW4fKqopGsuWJbiaaHIPcXZvlhI4w
+stA/edit?usp=sharing
+
+Varsity Shifts: Understanding the Nature
+of Athlete Transfers
+VarsityViz Team Members: Marco Gandola marcogandola@college.harvard.edu, Kate Gilliam
+kategilliam@college.harvard.edu, Gillian Schriever gillianschriever@g.harvard.edu
+
+Milestone 12: Think Aloud Results
+Notes (To be filled by project leads)
+Tester Name
+
+Sophia Millay sophia_millay@mde.harvard.edu
+
+Describe any usability issues or confusion the
+tester encountered while using the prototype.
+
+She had trouble understanding several aspects of the
+visuals and layout. She wanted clearer position
+labels and full school names, and she wasn’t sure
+why certain points or schools were highlighted while
+others weren’t. She also felt the plot on the right was
+too crowded, which made it hard to read individual
+points or trends.
+
+Was the tester able to understand the main
+message of the data story? (e.g., Yes/No +
+why/why not?)​
+
+Partially. She understood that the project is about how
+transfers change in the NIL era and that transfers
+have sped up, but she didn’t feel the main takeaway
+was communicated very clearly. In particular, the
+“21% faster” statistic felt under-explained and she
+wasn’t sure what exactly it was being compared to.
+
+What parts of the interface or visualization did
+the tester find most engaging or effective?​
+
+She liked that the visuals tried to tell a “playbook” story
+and thought the idea of a coach’s
+whiteboard/playbook was interesting. She also found
+the 2023 peak visually striking, which made her
+curious about what happened that season.
+
+What parts did the tester find confusing or less She felt several parts of the interface were confusing:
+effective?​
+●​ The right-hand plot was “too crowded,”
+making it hard to distinguish patterns.
+●​ She didn’t know why specific points were
+highlighted and found that distracting.
+●​ The bar chart and stoplight used inverted
+Freshman–Senior ordering, which made
+them harder to read together.
+●​ In the last graph, elements moved and
+changed size in ways that did not clearly map
+to the data, which she found inconsistent and
+distracting.
+
+Did the tester encounter any inconsistencies
+in design, data, or narrative?​
+
+Yes. She noticed that the class-year order
+(Freshman–Senior vs Senior–Freshman) was
+inconsistent across charts. She also pointed out that
+the color scheme did not feel consistent from one
+visualization to the next. The behavior of the final
+graphic (movement and resizing) also felt inconsistent
+with the rest of the more static charts.
+
+Were there any unexpected interactions or
+insights that emerged during the session?​
+
+Her questions highlighted that viewers will notice
+specific features like the 2023 peak and highlighted
+schools or points, but will not understand them
+unless they are clearly explained. Her comments
+made it clear that our design choices can easily be
+interpreted as arbitrary if we don’t explicitly connect
+them to the story.
+
+What specific improvements or changes did
+the tester suggest for the prototype?​
+
+●​ Be clearer with positioning labels and full
+names, and highlight only a few key examples
+intentionally.
+●​ Make the right-hand plot less crowded or
+easier to filter.
+●​ Explain what “21% faster” actually means and
+what it is compared against.
+●​ Clarify why certain points are highlighted
+(e.g., top importers/exporters).
+●​ Fix the Freshman–Senior ordering so it’s
+consistent between the bar chart and stoplight.
+●​ Make the last graph larger, more stable, and
+less “jumpy” so the changes are easier to
+interpret.
+●​ Use a more consistent color scheme
+throughout.
+
+Did the tester suggest any additional insights
+or visualizations to include?​
+
+She suggested that a pie chart might work better than
+a bar chart for at least one of the categorical
+breakdowns. She also mentioned possibly creating
+different “playbooks” for different sports, rather
+than using a single generic one.
+
+General observations or comments from the
+tester.​
+
+Overall, she was more critical and focused heavily on
+clarity and consistency issues. She felt the project
+has potential, but that right now the visuals are too
+busy and not clearly explained, which keeps the
+main message from landing as strongly as it could.
+Notes (To be filled by project leads)
+
+Tester Name
+
+John Vizhco john_vizhcoleon@college.harvard.edu
+
+Describe any usability issues or confusion the
+tester encountered while using the prototype.
+
+He was unsure what the left dropdown controlled and
+had to guess that it might be positions. He expected to
+be able to highlight lines and see hover tooltips on
+the graphs, and found the overlapping data hard to
+read without them.
+
+Was the tester able to understand the main
+message of the data story? (e.g., Yes/No +
+why/why not?)​
+
+Yes, mostly. He understood that the story is about how
+the transfer portal / NIL era changes transfer
+behavior, and he noticed patterns like juniors
+transferring more. However, he felt the NIL concept
+and what came before should be stated more clearly.
+
+What parts of the interface or visualization did
+the tester find most engaging or effective?​
+
+He liked the newspaper-style layout and said it
+“looks cool.” He thought the graph on the right was
+the clearest of the charts. He also thought the final
+visual was “really cool” visually, even though its
+meaning wasn’t fully clear.
+
+What parts did the tester find confusing or less The purpose of the left dropdown menu was unclear.
+effective?​
+The lack of highlighting and hover on the graphs
+made it hard to distinguish overlapping lines. The
+change shown in the final visual wasn’t obvious to
+him, even though the design itself was appealing.
+Did the tester encounter any inconsistencies
+in design, data, or narrative?​
+
+No major inconsistencies in the data were mentioned,
+but he expected interaction patterns (highlighting,
+hovering) that the visuals did not provide, which
+created a small mismatch between the look of the
+charts and how they actually behaved.
+
+Were there any unexpected interactions or
+insights that emerged during the session?​
+
+He quickly noticed and asked about why juniors
+transfer more, which highlighted that this pattern
+stands out in the data and could be emphasized more
+in the narrative.
+
+What specific improvements or changes did
+the tester suggest for the prototype?​
+
+●​ Make the left dropdown label and purpose
+clearer.
+●​ Allow users to highlight specific lines in the
+graph.
+●​ Add hover tooltips and reduce overlap in the
+data display.
+●​ Explain NIL more clearly, including what the
+situation was before NIL.
+●​ Make the change illustrated in the final
+visual more explicit and easier to interpret.
+
+Did the tester suggest any additional insights
+or visualizations to include?​
+
+He did not propose a brand-new chart type, but he
+emphasized improving interactivity (highlighting,
+hover) and adding clearer explanatory
+text/annotations rather than adding more visuals.
+
+General observations or comments from the
+tester.​
+
+Overall he liked the look and concept of the project
+and found the visuals engaging, but he felt that a bit
+more clarity in labels, interactions, and the NIL
+explanation would make the story much easier to
+follow.
+
+Discussion Questions
+Based on the results of your ‘think aloud’ study, what would you improve in your data
+story?
+​
+Based on the results of the think-aloud study, the data story needs clearer narrative
+communication, more consistent design decisions, and simpler, more interpretable visuals.
+Although both testers grasped the general idea that transfers have shifted in the NIL era, they
+did not feel the main takeaway was stated clearly enough. They indicated the need to introduce
+NIL context earlier and explicitly explain key claims. Visual clarity can be improved by adjusting
+crowded plots, unclear highlighting, and ambiguous interactions. Consistency can be improved
+by ensuring that class year is ordered correctly and color schemes are cohesive. Testers also
+emphasized the importance of clearer interface elements, like labeling the dropdown and
+making visual changes in the final graphic more stable and clearly tied to the data. Together
+these refinements would strengthen comprehension and ensure the central message is
+immediately visible.
+Are there any additional insights and visualizations you would use? Would you amplify
+or change your message? Did your narrative work? Did the tester get your takeaways?
+​
+The think-aloud results suggest adding a few targeted insights and potentially
+introducing one new visualization to strengthen clarity rather than expanding the dashboard.
+One opportunity is to emphasize the pattern both testers noticed, that juniors transfer more
+often, by surfacing it more directly through annotations. A simplified categorical breakdown,
+such as the suggested pie chart, could replace the bar chart if testing shows it reduces cognitive
+load. The focus should remain on clarifying existing visuals rather than adding more. The core
+message should stay the same, but it needs to be amplified. The narrative should state upfront
+how transfer behavior changed before and after NIL, explain what 21% faster is comparing, and
+intentionally highlight only a few meaningful examples so viewers understand why they matter.
+The narrative partially worked. Both testers understood that the story was about transfer
+acceleration in the NIL era, but they did not fully grasp the intended takeaways, indicating that
+the message was implied rather than clearly delivered. Strengthening explanatory text,
+standardizing class-year ordering and color schemes, reducing visual crowding, and adding
+basic interactions like hover and line highlighting would make the central insights more explicit
+and ensure that users not only notice the patterns but actually understand them.
+
+Decide as a team which of these improvements you will implement and write down your
+decisions and why you made them in your process book as a numbered list.
+1)​ Remove the lesser known football positions (stick with QB, LB, OL, DL, WR etc.)
+2)​ Address 21% faster comment
+3)​ Switch order of grades in the bar chart to match the stoplight visual
+4)​ Reduce visual crowding in visuals (adjust axes)
+5)​ Edit the final visual to remove motion when you toggle between pre-NIL and post-NIL.
+Make it clearer that more juniors/sophomores are transfering
+
+Milestone 11: Prototype III
+Requirements
+For milestone requirements, such as team member documentation, complete data pipelines,
+etc., please refer to Milestone 10.
+
+Design updates
+Our team currently has a refined working prototype from Milestone 10 ready for user testing. We
+do not want to alter our design without first getting feedback. Depending on the feedback we
+receive, here are a few ideas we brainstormed for design enhancements:
+●​ Map of the United States depicting transfer trends over time. A sliding scale will allow for
+users to move through time, and arrows will show transfers in and out of schools. Color
+or small designs (i.e., school logos) will symbolize schools with large transfer counts.
+●​ Update of narrative and/or figure captions to more specifically call out which data sets
+are being used (i.e., NCAA-level data versus football-only data).
+●​ A scrollable slideshow-style presentation of the visualization and story points, similar to
+the demonstrations and examples shown in class.
+
+Milestone 10: Prototype II
+Team member documentation
+The students who actively worked on this prototype submission are: Gillian Schriever, Kate
+Gilliam, and Marco Gandola.
+
+Complete data pipelines
+Our complete data pipelines for both the NCAA and CFB datasets, which includes scraping,
+cleaning, feature engineering, and exploratory visualization, can be found in the notebooks
+subfolder of our Milestone 9 zip folder.
+
+Functional visualizations and website structure
+The below screenshots capture our functional drafts of our visualizations and completed website
+structure. Our story of NIL’s impact on college student athlete transfers and our message of how
+athletic departments need to update their strategies is captured in the website’s text and
+visualizations.
+Updates since the previous milestone include:​
+●​
+●​
+●​
+●​
+●​
+●​
+●​
+
+CFP chart with position filtering (25 positions)
+NCAA chart with sport filtering (27 sports)
+Enhanced stoplight showing class year transfer shifts
+Updated style to include newspaper design
+Cumulative transfer growth chart showing acceleration of transfer volumes post-NIL
+Stacked bar chart comparing transfer distribution by class year (Pre-NIL vs Post-NIL)
+Interactive coach's whiteboard visualization contrasting Pre-NIL and Post-NIL transfer
+strategies
+
+Milestone 9: Prototype I
+Team member documentation
+The students who actively worked on this prototype submission are: Gillian Schriever, Kate
+Gilliam, and Marco Gandola.
+
+Complete data pipelines
+Our complete data pipelines for both the NCAA and CFB datasets, which includes scraping,
+cleaning, feature engineering, and exploratory visualization, can be found in the notebooks
+subfolder of our Milestone 9 zip folder.
+
+Two functional D3 visualizations
+
+Figure 1: Initial draft of our ‘hook’ visualizations created using D3. Both line charts are meant to
+depict the changes in overall number of transfers on the college football and NCAA-levels over
+time. Both charts are currently static, however, interactive filtering and/or callouts will be
+considered to deepen audience understanding.
+
+Additional visualization draft
+Ont
+
+Our remaining visualizations build on the story of how NCAA transfer patterns have evolved
+over time. The first visualization will show transfers by class year, revealing how student-athlete
+movement has shifted across eligibility levels. The Transfer Signal visualization will reinforce
+these patterns in a more dynamic and engaging format, illustrating the intensity and timing of
+transfer activity. Finally, Rethinking the Playbook will compare pre- and post-NIL transfer trends,
+featuring interactive pop-outs that outline the new “game plan” athletic programs should adopt to
+manage transfers in the NIL era. Together, these visualizations offer unique insights that deepen
+the narrative about how NIL policy has transformed the transfer landscape.
+
+Website structure
+
+Figure 2: Three screenshots showing the initial draft of our website design for our VarsityViz
+project. Placeholders are present for to-be-implemented visualizations. Draft text guides the
+reader through the visualizations and story arc, based on the narrative constructed as part of
+Milestone 8.
+
+Innovative view design
+Our VarsityViz project goes beyond generic visualizations with designs selected to appeal to our
+target audience. Specifically, we plan to implement a newspaper-style layout for our hook
+visualization. This layout appeals to athletic department directors who may be used to reading
+classic sports newspapers, while also giving the feel that the audience is reading ‘breaking NIL
+news.’ We plan to continue to use innovative designs throughout the website, with
+stoplight-inspired chart designs and solutions laid out in the style of a coach’s whiteboard, sure
+to tap into the emotions and focus coaches and teammates have viewing similar whiteboards
+before games.
+Additionally, we go beyond static visualizations with plans for filtering and layering callout boxes
+to keep the audience engaged and improve understanding. For instance, we intend to use filters
+to allow users to view NCAA-level trends or drill down to the individual sport level, perhaps to
+sports that most appeal to them. We are also considering supporting conference-level views.
+Lastly, we plan to use callout boxes that appear when hovering over critical areas, such as
+datapoints, reducing the need for confusing legends and offering hidden insights into the data.
+
+Combined with our brief, snappy story telling lines interspersed through our charts, our website
+offers busy athletic department staff a relatable and interactive way to learn about data-driven
+insights impacting their school.
+
+Milestone 8: Storyboard
+Main Message: Post-NIL transfer volumes increased and timing shifted
+toward earlier class years.
+Hook: The NIL Era: A Game Changer
+-​ Timeline showing dramatic spike after July 2021 (when NIL policy began)
+-​ Use color to make this more dramatic
+-​ Text: “In 2021, college athletes gained new freedom and mobility”
+-​ Purpose is to signal that NIL is a turning point and that transfers surged afterward
+Rising Insights
+-​ Visualization 1: Line Chart or Area Chart- Transfer Volume over time (2018-2024)
+-​ Highlight a visible jump in 2021 (post-NIL)
+-​ Visualization 2: Stacked Bar Chart - Transfers by Class Year (Before vs After NIL)
+-​ Bars for each class year
+-​ Two sets; pre-NIL and post-NIL
+-​ Highlight growth in earlier class years
+Main Message: Athletes Transfer More and Sooner
+-​ Options: Transfer Traffic Lights (one for pre and one for post NIL)
+-​ Pre-NIL only bottom lights (junior/senior are glowing)
+-​ Post-NIL- all lights active (sophomore and junior are most pronounced)
+-​ The transfer signal turned green earlier in players careers
+Solution: Rethinking the Playbook
+-​ Coach’s White Board
+-​ Arrows with x’s and o’s showing the old game plan (mostly junior and senior
+transfers) to the new strategy (manage NIL incentives, build relationships early
+on with players)
+
+Data Insights: Gillian Schriever
+High-Level Insight
+
+Evidence
+
+Why it Matters
+
+Post-NIL,
+transfer volumes
+increased and
+timing shifted
+toward earlier
+class years
+
+●​ NCAA overall transfer counts
+show uptick in transfers in
+mid-to-late 2021, post-July 2021
+NIL change
+●​ CFP data shows higher counts in
+2022–2023 vs 2019–2020
+●​ Grade-level transfer counts from
+NCAA/CFP indicate increases
+mostly in Sophomores and
+Juniors: earlier transfer
+compared to pre-NIL
+
+Athletic directors (ADs) need
+to know when retention risk is
+highest to target interventions
+(recruiting, NIL offers, support
+programs)
+
+Some
+conferences/sch
+ools are net
+exporters while
+others are net
+importers, and
+talent quality
+shifts for many
+schools
+
+●​ From CFP data: school-level
+inbound vs outbound transfer
+visualizations show some
+schools with high inflow or
+outflow
+●​ Bubble charts with average
+ratings show certain schools
+attracting players with
+equal/higher recruiting ratings
+than those they lose, and vice
+versa
+
+ADs can see their program
+compared to others: are we
+losing top talent, are we
+successfully attracting better
+talent? This may inform
+recruiting strategy, training
+new coaches, and NIL
+strategy
+
+Position- and
+sport-specific
+patterns: some
+positions (and
+sports) see
+disproportionate
+transfer activity
+
+●​ CFP and NCAA datasets show
+positions like quarterbacks, wide
+receivers, and linemen have
+distinct transfer patterns
+●​ NCAA data show some sports
+are consistently higher-transfer
+(for example, non-revenue sports
+vs. revenue sports)
+
+Athletic department can
+prioritize student athlete
+support and NIL resources by
+position/sport where transfer
+risk is highest
+
+Data Insights: Marco Gandola
+High-Level Insight
+
+Evidence
+
+Why it Matters
+
+Aid status at the
+departing school
+
+• Aided entrants (2024, all sports):
+64% “Transferred & received aid”
+
+Aid history is a practical risk
+flag. Aided athletes tend to
+
+predicts portal
+outcomes
+
+(~10,292 athletes); 10% transferred
+without aid; 31% remained active in the
+portal.
+• Unaided entrants (2024, all sports):
+27% “Transferred & received aid”; 22%
+transferred without aid; 51% remained
+active.
+
+land quickly (often with aid
+again), so ADs can prioritize
+compliance, roster slots, and
+NIL packaging for these
+profiles while planning longer
+pipelines for unaided entrants
+who linger in the portal.
+
+Division I’s share
+of entrants is
+rising, especially
+aided spots
+
+• D-I (Aided) share of entrants: 61% →
+64% → 67% (2022→2023→2024).
+• D-I (Unaided): 17% → 16% → 14%
+over the same years.
+• D-II (Aided): 17% → 14% → 13%; D-III
+roughly steady (~3%).
+
+More portal activity is tied to
+funded D-I opportunities.
+Scholarship budgeting and
+NIL resources should be
+front-loaded at the D-I level;
+the shrinking D-I unaided
+pool means fewer no-aid
+landing spots to count on.
+
+Completion rates
+are highest in
+key sports;
+“active in portal”
+is much lower
+there
+
+2024 outcomes (share of entrants
+who Transferred / Active):
+• Women’s Basketball: 75% transferred,
+20% active
+• Football–FBS: 72% transferred, 23%
+active
+• Men’s Basketball: 72% transferred,
+22% active
+
+In these programs, entries
+almost always become exits,
+and fast. ADs should
+pre-clear scholarships/roster
+slots and accelerate decision
+cycles during portal windows;
+there’s little margin for “wait
+and see.”
+
+Data Insights: Kate Gilliam
+High Level Insight
+
+Evidence
+
+Why it Matters
+
+Downward transfers
+dominate the portal,
+revealing playing-time
+motivations
+
+A significant portion of Power
+5 athletes transfer to
+lower-tier FBS programs.
+Players leaving programs like
+Alabama or Georgia often
+land at mid-major schools
+where they will immediately
+start.
+
+This movement pattern
+suggests that playing time
+and visibility, not prestige,
+often drive transfer decisions.
+Players prioritize on-field
+opportunity and potential NFL
+exposure over remaining at
+elite programs where
+competition limits playing
+time.
+
+Geographic proximity
+influences transfer
+
+Many transfers move within
+the same region or
+
+Regional familiarity, cultural fit
+and existing recruiting
+
+destinations.
+
+conference footprint. Players
+leaving SEC schools often
+end up at nearby Sun Belt or
+AAC programs. Transfers
+across the country are much
+less frequent.
+
+networks play a major role in
+decision making despite the
+national scope of the transfer
+portal.
+
+Immediate eligibility
+policies accelerated
+transfer rates post-2021.
+(This happened in tandem
+with NIL)
+
+Following the NCAA’s rule
+allowing one-time immediate
+eligibility, total transfer counts
+spiked by more than 30%
+between 2020 and 2022
+
+The policy shift changed
+player mobility. This made the
+portal into a free-agency like
+marketplace. It highlights how
+regulatory changes, like NIL
+policy, can reshape athlete
+behavior and roster stability.
+
+Milestone 7: Decide
+Table 1: Affinity map of sketches and their respective question(s) and authors.
+Sketch ID(s)
+
+Question ID(s)
+
+Author Initials
+
+Total Votes
+
+1, 3, 10
+
+Q2
+
+GS, GS, KG
+
+3 (10)
+
+5, 7
+
+Q3
+
+GS, KG
+
+0
+
+6
+
+Q4
+
+GS
+
+0
+
+11, 13
+
+Q5
+
+KG, MG
+
+1 (13)
+
+14
+
+Q6, Q11
+
+MG
+
+0
+
+2, 12
+
+Q7
+
+GS, MG
+
+0
+
+8
+
+Q8
+
+KG
+
+0
+
+9
+
+Q9
+
+KG
+
+2
+
+4
+
+Q11
+
+GS
+
+2
+
+15
+
+Q3, Q4, Q6, Q11
+
+MG
+
+4
+
+16
+
+Q3, Q4, Q12
+
+MG
+
+2
+
+Selected Sketches
+
+Figure 4: Bubble chart by Gillian Schriever that uses the CFB dataset to answer the following question:
+11) Are schools attracting players who are higher-rated than the ones they lose?
+
+Figure 9: Visualization by Kate Gilliam that uses the CFB dataset to answer: 9) Do certain schools show
+trends in transfers over time? (more schools would be added to this if used in the future)
+
+Figure 10: Visualization by Kate Gilliam that uses the NCAA dataset to answer: 2) How do we compare in
+terms of recruitment/retainment to other schools?
+
+Figure 15: Quadrant scatter by Marco Gandola that uses the CFB dataset to answer the following
+question: 3) Which league(/school) loses the most athletes to transfers? 4)Which league(/school) retains
+the most athletes? 6) Do schools with strict NIL policies correlate with reduced athlete retention? 11) Are
+schools attracting players who are higher-rated than the ones they lose?
+
+Figure 16: Bullet bar chart by Marco Gandola that uses the CFB dataset to answer the following question:
+3) Which league(/school) loses the most athletes to transfers? 4)Which league(/school) retains the most
+athletes?12) Which schools improved retention post-NIL?”
+
+Summary of Rationale
+We selected sketches (i.e., figures) 4, 9, 10, 15, and 16 because they give athletic departments a holistic
+view of student athlete transfer behavior both from NCAA-wide perspective and from the perspective of
+one of the highest revenue-generating sports: football. We all voted for Figure 10, as it clearly shows what
+schools student athletes are transferring to most, providing athletic departments with a simple starting
+point for selecting schools to further investigate. Figure 9 provides a similar answer, but with an artistic,
+memorable flair and a focus on football player transfers. Figures 4, 15 and 16 were selected given their
+clever visualization of the rich CFB dataset, allowing athletic departments to answer multiple questiuons
+at once and dig deeper into trends behind football player transfers. Specifically, these three sketches help
+identify schools that have a higher influx of highly-rated players, highlight schools that have unusually
+large or small transfer rates, and explain how school transfer behavior changes over time. Overall, these
+sketches focus on the transfer-related questions we imagine to be top priority for athletic directors:
+questions related to the impact of NIL over time and the quality and quantity of transfers in and out of
+schools.
+
+Milestone 6: Sketches
+
+Figure 1: Bar chart by Gillian Schriever that uses the CFB dataset to answer the following question: 2)
+How do we compare in terms of recruitment/retainment to other schools? To the league average?
+Compared to other leagues (Big 10, ACC, SCC, etc.)?
+
+Figure 2: Bar chart by Gillian Schriever that uses the CFB dataset to answer the following question: 7)
+How did transfer rates change before, during, and after NCAA-wide NIL policy implementation?
+
+Figure 3: Heat map by Gillian Schriever that uses the CFB dataset to answer the following question: 2)
+How do we compare in terms of recruitment/retainment to other schools? To the league average?
+Compared to other leagues (Big 10, ACC, SCC, etc.)?
+
+Figure 4: Bubble chart by Gillian Schriever that uses the CFB dataset to answer the following question:
+11) Are schools attracting players who are higher-rated than the ones they lose?
+
+Figure 5: Bar chart by Gillian Schriever that uses the CFB dataset to answer the following question: 3)
+Which league loses the most athletes to transfers?
+
+Figure 6: Bar chart by Gillian Schriever that uses the CFB dataset to answer the following question: 4)
+Which league retains the most athletes?
+
+Figure 7: Bar Chart by Kate Gilliam that uses the CFB dataset to answer: 3) Which league loses the most
+athletes to transfers?
+
+Figure 8: Visualization by Kate Gilliam that uses the NCAA dataset to answer: 8) During what year are
+athletes most likely to transfer?
+
+Figure 9: Visualization by Kate Gilliam that uses the CFB dataset to answer: 9) Do certain schools show
+trends in transfers over time? (more schools would be added to this if used in the future)
+
+Figure 10: Visualization by Kate Gilliam that uses the NCAA dataset to answer: 2) How do we compare in
+terms of recruitment/retainment to other schools?
+
+Figure 11: Pie Chart by Kate Gilliam that uses the NCAA dataset to answer the question: 5) Which sport
+loses the most athletes to transfers?
+
+Figure 12: Butterfly bar chart by Marco Gandola that uses the CFB dataset to answer the following
+question: 7) How did transfer rates change before, during, and after NCAA-wide NIL policy
+implementation?
+
+Figure 13: Bar chart ranked horizontally by Marco Gandola that uses the NCAA dataset to answer the
+following question: 5) Which sport loses the most athletes to transfers?
+
+Figure 14: Dumbbell plot by Marco Gandola that uses the CFB dataset to answer the following question:
+6) Do schools with strict NIL policies correlate with reduced athlete retention? 11) Are schools attracting
+players who are higher-rated than the ones they lose?
+
+Figure 15: Quadrant scatter by Marco Gandola that uses the CFB dataset to answer the following
+question: 3) Which league(/school) loses the most athletes to transfers? 4)Which league(/school) retains
+the most athletes? 6) Do schools with strict NIL policies correlate with reduced athlete retention? 11) Are
+schools attracting players who are higher-rated than the ones they lose?
+
+Figure 16: Bullet bar chart by Marco Gandola that uses the CFB dataset to answer the following question:
+3) Which league(/school) loses the most athletes to transfers? 4)Which league(/school) retains the most
+athletes?12) Which schools improved retention post-NIL?”
+
+Milestone 5: Data
+Finalized Data Sources
+Source
+
+File Location
+
+Useage Restriction
+
+College Football
+Portal &
+Recruiting
+Statistics
+
+CFP_Transfer_Data_EDA.ipynb
+
+Available for public use
+
+Transfer Portal
+Data: Division I
+Student-Athlete
+Transfer Trends
+
+NCAA_Data_Expansion_EDA.ipynb
+
+Available for public use
+
+Data Inventory
+Source
+
+Number of Items (datapoints)
+
+Number of Variables
+(columns)
+
+College Football
+Portal &
+Recruiting
+Statistics
+
+85111
+
+13
+
+Transfer Portal
+Data: Division I
+Student-Athlete
+Transfer Trends
+
+2632
+
+94
+
+NCAA transfer portal data was collected from the following website: Transfer Portal Data:
+Division I Student-Athlete Transfer Trends. For full counts, see
+NCAA_Data_Expansion_EDA.ipynb.
+
+Data was loaded from Kaggle: College Football Portal & Recruiting Statistics. For full
+counts, see CFP_Transfer_Data_EDA.ipynb.
+
+Data Exploration
+
+Screenshots of AI prompts and relevant outputs. For full counts and charts, see
+NCAA_Data_Expansion_EDA.ipynb.
+
+Screenshots of AI prompts and relevant outputs. For full counts and charts, see
+
+CFP_Transfer_Data_EDA.ipynb.
+
+Identify data cleaning needs: Document missing values, inconsistencies,
+duplicates, and transformation requirements.
+NCAA Dataset:
+We developed these prompts to maximize the outcome of the generation of code. In this
+particular case the data appears to be already clean without missing values. However, the
+
+original wide format with year-stamped columns made filtering and time-series analysis very
+labourous, so in the next step we reshaped all datasets into tidy long format with explicit year,
+measure, and value columns for easier manipulation and visualization.
+
+Screenshots of AI prompts. For full outcome with counts and tables, see
+
+NCAA_Data_Expansion_EDA.ipynb.
+
+CFP Dataset:
+The College Football transfers dataset contains 6,547 rows, with 69.3% having at least one
+missing value. The most significant missingness occurs in rating (65.5%) and destination
+(38.4%) columns, while stars has only 8.1% missing. The rest of the data appears to be without
+missing values. While there are no exact duplicate rows, analysis of the composite key
+(first_name, last_name, transfer_date) revealed 4 pairs of potential duplicates. Text quality
+issues include non-ASCII characters in name fields and case variations, particularly in
+first_name (14 variations). Key transformations needed: parse transfer_date strings into proper
+datetime format, standardize text fields by handling non-ASCII characters and case
+normalization, and create a normalized composite key for deduplication.
+
+Screenshots of AI prompts. For full outcome with counts and tables, see
+
+CFP_Transfer_Data_EDA.ipynb.
+
+Clean your data: Remove duplicates and transform the data as needed for
+visualizing your data story.
+NCAA Dataset:
+After confirming the NCAA data was already clean with zero missing values and no duplicates,
+we identified a structural inefficiency: the wide format with year-stamped columns created
+barriers for temporal analysis and cross-year comparisons. Each year-measure combination
+occupied its own column (e.g., "2022 Graduate", "2023 Undergraduate"), forcing analysts to
+manually specify column names for filtering or aggregation. We transformed all four datasets
+from wide to long format, where year, measure type, and value became explicit variables rather
+than being embedded in column headers. This restructuring was very important for Q4, where
+we decomposed complex column names into three separate dimensions (entrant_type,
+outcome, and value_type), enabling independent filtering on aid status and transfer outcomes.
+
+Screenshots of AI prompts. For full outcome with counts and tables, see
+
+NCAA_Data_Expansion_EDA.ipynb.
+CFP Dataset:
+
+The CFP transfer dataset required five cleaning steps to prepare it for analysis. We handled
+missing values by adding a has_rating flag for missing ratings, replacing missing destinations
+with "Uncommitted", and preserving missing star ratings. We identified and removed 4 duplicate
+player entries, prioritizing records with ratings when available. Text standardization cleaned
+names by removing non-ASCII characters, converted positions to uppercase, and formatted
+school names consistently. Date parsing transformed transfer_date into proper datetime format
+and generated temporal features (transfer_year, transfer_month, transfer_quarter) plus a
+post_nil flag marking transfers after July 2021. Finally, we standardized eligibility as categorical
+text and added an eligible_immediately flag for quick filtering. The cleaned dataset contains
+6,543 rows with 7 newly engineered features.
+
+Screenshots of AI prompts. For full result tables, see CFP_Transfer_Data_EDA.ipynb.
+
+Write a two-paragraph reflection: How does your actual data compare to
+your original vision? Which audience questions you came up with earlier
+can/cannot be answered? What are your biggest data quality challenges?
+​
+Our original vision was to explore how the NCAA’s NIL policy may have reshaped trends
+in student-athlete transfers. Our goal was to visualize these shifts across sports, schools, and
+time. The datasets we settled on, the NCAA aggregated transfer data and a College Football
+Transfer dataset found on Kaggle, lined up well with this vision. The NCAA dataset gives us
+clean, institution-level counts across sports. This is ideal for broad policy and trend questions.
+The Kaggle dataset provides us with individual-level football transfer entries. It includes
+attributes like ratings, positions, and specific schools. Together, these sources allow us to
+explore both macro- and micro-level trends about transfers before and after the NIL rules were
+put in place. Some of our original questions regarding comparing NIL effects across all sports or
+linking policy changes to individual player decisions are more difficult to answer as the NCAA is
+aggregated and the football-specific data does include direct NIL indicators.
+​
+The biggest data quality challenge we faced was cleaning and reshaping the Kaggle
+dataset. Nearly 70% of the rows had at least one missing value, specifically in ratings and
+destinations. This required us to flag or reformat variables for consistent analysis. We also had
+to standardize text fields, remove duplicates, and parse dates into formats that are more usable.
+Conversely, the NCAA data was already clean but was in a wide format that made analysis
+more difficult. We transformed it into a tidier long format to make our work simpler in the
+long-run. These steps highlighted how much effort is required to prepare real-world data before
+it can be visualized. All in all, our datasets are strong foundations for analyzing conference-level
+trends, position-based movement in football, and broad shifts caused by changes in NIL policy.
+That said, certain questions regarding athlete motivations and NIL effects may be out of reach
+without more detailed or individual-level data.
+
+Team Discussion: Project Direction and Goals
+Audience Ideation
+Potential Target Audience
+
+Justification
+
+Athletic Directors/athletic departments
+
+To inform policy, planning, executive
+decisions, and strategy
+
+Student athletes
+
+To help them decide a school when being
+recruited or when deciding to transfer
+
+Companies sponsoring NIL deals
+
+To decide which schools, sports, genders,
+class years to target for NIL deals, and
+what time of year
+
+Target Audience Description
+●​ Target audience: athletic departments, potentially specifically Ivy League school
+athletic departments
+○​ Knowledge: Current NIL policy
+■​ School-level NIL policy
+■​ NCAA-wide NIL policy
+■​ other schools’ NIL policies
+○​ Interests: Improve athletic retainment, recruitment, and performance
+through potentially changing the following:
+■​ Their own school-level NIL policy
+■​ Other athletic-related, school-level policy
+■​ Athletic department strategy, planning, and high-level executive
+decisions regarding athletics (e.g., deciding to conduct further
+evaluation of certain sports, provide additional support to certain
+athletic programs)
+○​ Visualization literacy: high
+■​ Athletic departments are willing to put time and attention into
+understanding visuals, as opposed to casual audience/passerbys
+■​ There is a high motivation to improve policy and other decisions
+impacting athletics as it ultimately impacts program perforamance
+and prestige, and reflects the performance of athletic department
+coaches and staff
+○​ Level of detail of information presented: Multiple levels
+■​ School-level
+
+■​ League-level
+■​ Division-level
+■​ NCAA-wide
+■​ Options to filter by sport, year, class year, geography and gender
+
+Questions of Interest for Athletic Departments
+1.​ How can we improve NIL policy at our school to maximize athlete recruitment?
+Retainment?
+2.​ How do we compare in terms of recruitment/retainment to other schools? To the
+league average? Compared to other leagues (Big 10, ACC, SCC, etc.)?
+3.​ Which league loses the most athletes to transfers?
+4.​ Which league retains the most athletes?
+5.​ Which sport (at our school) loses the most athletes to transfers?
+6.​ Do schools with strict NIL policies correlate with reduced athlete retention?
+7.​ How did transfer rates change before, during, and after NCAA-wide NIL policy
+implementation?
+8.​ During what year (Freshman, Sophomore, Junior, etc.) is transfer most likely to
+occur? Are there differences among years?
+9.​ Do certain schools show changes or cycles in transfer rates over time?
+10.​What other features may predict transfer rates (e.g., Division, gender, high
+school)?
+11.​Are schools attracting players who are higher-rated than the ones they lose?
+12.​Which schools improved retention post-NIL?”
+
+Data of Interest
+Source
+
+Description
+
+Data Types
+
+College
+Football
+Portal &
+Recruiting
+Statistics
+
+Individual transfer portal
+entries for college football
+players from 2020-2023. Each
+entry shows when a player
+entered the transfer portal,
+their origin and destination
+schools, position, recruiting
+ratings, and eligibility status.
+
+Categorical:
+●​ first and last name
+●​ position
+●​ origin
+●​ destination
+●​ elligibility
+Ordinal:
+●​ stars (1-5 star recruiting rating)
+●​ rating (numerical recruiting
+rating)
+Quantitative:
+●​ Transfer date
+
+Transfer
+Portal Data:
+Division I
+Student-Ath
+lete
+Transfer
+Trends
+
+The NCAA's official transfer
+portal data, showing
+aggregated transfer data
+across all Division I sports.
+Data is at the institutional
+rather than individual level.
+
+Categorical:
+●​ Sport
+●​ Conference/League
+●​ Institution names
+Quantitative:
+●​ Transfer counts
+●​ Retention rates
+●​ Year
+
+Exploratory Visualizations
+Figure 1: Line chart by Gillian Schriever related to the following questions: 7. How did
+transfer rates change before, during, and after NCAA-wide NIL policy implementation?
+9. Do certain schools show changes or cycles in transfer rates over time?
+
+Figure 2: Bar chart by Gillian Schriever related to the following question: 10. What other
+features may predict transfer rates (e.g., Division, gender, high school)?
+
+Figure 3: Bar chart by Gillian Schriever related to the following question: 3. Which
+league loses the most athletes to transfers?
+
+Figure 4: Bar chart by Gillian Schriever related to the following question: 4. Which
+league retains the most athletes?
+
+Figure 5: Bar Chart by Kate Gilliam related to the following question: How do we
+compare in terms of recruitment/retainment to other schools? To the league average?
+Compared to other leagues (Big 10, ACC, SCC, etc.)?
+
+Figure 6: Map Visualization of Transfers by Kate Gilliam
+*This will eventually be one map with filters for outgoing vs incoming, school, state, year
+etc.
+
+Figure 7: Flow Chart by Grade by Kate Gilliam
+* This will be an interactive chart. If you hover over each section, a pop-up will display the
+number of transfers and percentage of the grade that corresponds to the category.
+
+Reflection on Visualizations - Kate Gilliam
+The visualizations above address questions related to how transfer activity varies
+across conferences, schools, and athlete experience levels. In Figure 5, we use a bar
+graph to show transfer activity by conference. This provides a starting point for
+comparing policies and competitive environments across conferences. In Figure 6, we
+present a map visualization of transfers from school to school. This makes geographic
+patterns in athlete movement more visible and shows trends in how location or regional
+rivalries might influence transfer decisions. In Figure 7, we show transfers by grade
+level. This displays when athletes are most likely to leave their current program. This
+
+shows trends in pressure points in recruitment and retention. At this stage, it is difficult
+to tell which of these perspectives is the most informative, as these visualizations
+represent only a preliminary analysis. That said, these visualizations do provide athletic
+directors with information that may spark further investigation. For example, they might
+focus on conferences with unusually high transfer activity, or examine grade-level
+support systems for athletes who are most likely to transfer. Ultimately, these
+visualizations are a good foundation for further exploration. They offer athletic
+departments a clearer picture of transfer dynamics while also pointing to more questions
+that will guide further analysis.
+Reflection on Visualizations - Gillian Schriever
+Figures 1-4 address questions related to the three interests documented in the Target
+Audience Description section. In Figure 1, question 7 remained the same, and question
+9 was slightly updated to reflect the overall transfer rate, not the school-level transfer
+rate, since there may not be enough data to capture anything but noise at the
+school-level, plus we suspect factors influencing transfer rates throughout the year
+would mostly be present nation-wide. In Figure 2, we looked at how transfer rate varied
+with team position, which although was not something we had in mind, turned out to be
+highly correlated with transfer rate. In Figures 3 and 4, we looked at school-level
+transfer rates, with the latter figure having a slightly differing question: instead of looking
+at what schools retained the most athletes, we looked at the schools that attracted the
+most transfers. At this point in our analysis, it is difficult to say which questions are
+better than others, since these visualizations are only the first step in a long series of
+steps needed to meet the relevant athletic department goals. For example, after viewing
+these visualizations, an athletic department would most likely: 1) select schools,
+policies, and sports of interest, 2) conduct evaluations of said schools policies, and
+sports, 3) determine which policies can be changed, 4) determine how to inform policies
+based on the visualizations, 5) update policy and monitor for expected improvement in
+athletic retainment, recruitment, and/or performance.
+
+Figure 8: Bar chart by Marco Gandola related to the following question: 5. Which
+position at every school loses the most athletes to transfers? Which position at every
+school gains the most athletes to transfers?
+
+Figure 9: Line chart by Marco Gandola related to the following question: 7. How did
+transfer rates change before, during, and after NCAA-wide NIL policy implementation?
+
+Figure 10: Bar chart by Marco Gandola related to the question: 11. Are schools
+attracting players who are higher-rated than the ones they lose?
+
+Reflection on Visualization - Marco Gandola
+The previous three sketches all build directly on the team’s original questions, but I tried
+to make them more practical for athletic departments, which is our main audience. The
+loss vs. gain by position chart combines two of our questions to show exactly where
+schools are losing players and where they’re acquiring them by position, giving a
+sharper picture of roster rearrangements. The 6-month NIL trend chart sticks with the
+policy timing question but uses a finer time scale, which makes it easier to see
+short-term spikes right after NIL took effect versus longer-term patterns. I believe there
+is some noise regarding this graph because of Covid19 that slowed down if not stopped
+college activity for almost a year. Finally, the average star rating chart reframes the
+predictors question around player quality, helping us see whether schools are upgrading
+or downgrading their talent through the portal. My goal for these views was to
+complement each other: they show what positions are changing, when the biggest shifts
+happen, and whether schools are coming out ahead or falling behind in terms of talent.
+
+Abstract
+Student-athlete transfers are an important factor in collegiate sports, having major
+impacts on recruiting strategy, team performance, and athletes’ performance. In July
+2021, NCAA adopted the name/image/likeness (NIL) policy, which allows
+student-athletes to receive financial compensation and representation. Our team
+postulates this policy may have shifted the transfer landscape dramatically. In this
+project, we aim to explore the landscape of student-athlete transfers in America through
+three main goals:
+1) investigate whether the NIL policy correlates with changes in transfer behavior,
+2) explore whether certain features are predictive of transfers, and
+3) visualize the broader transfer landscape across geography and time.
+We plan to use either the NCAA’s official transfer data or a rich Kaggle dataset focusing
+on collegiate football transfers. By using maps to show where athletes are transferring
+to and from, our visualizations will allow for easy processing of rich geographical data.
+We also plan to use time series and multivariate views to show trends and patterns
+across geographical space and time. We hope these visualizations will not only tell the
+broader story of collegiate transfers, but also help inform coaches, recruiters, athletes,
+and sports enthusiasts.
+Background and Motivation
+Our team of current and former student athletes selected the general topic of athletics
+as a way to bring our passion for sports into the classroom. In July 2021, the NCAA
+adopted a policy allowing student athletes to receive compensation for their
+name/image/likeness (NIL) (NCAA, 2025). This watershed moment/landmark legislation
+sparked our interest in the specific topic of athlete transfers. This legislation raises
+questions such as: How did the landscape of student-athlete transfers shift after it
+became legal for schools to offer financial incentives to student-athletes? Our original
+idea was to focus on Harvard student athletes; however, we found institutional policy
+restricted our access to the necesary data. We are currently considering
+publicly-available data sources regarding the topic.
+Data
+Our team is currently considering online, publicly-available student athlete transfer
+datasets. We are considering using the NCAA’s dataset, since we expect
+student-athletes within the NCAA to be the most likely to be affected by the NIL policy
+shift, and since we are interested in observing shifts in transfer behavior across sports
+(Transfer Portal Data: Division I Student-Athlete Transfer Trends, 2025). This dataset
+would most likely need to be manually entered into a spreadsheet; no preprocessing
+would be needed given how the data is already cleaned and in aggregate. We are also
+considering a college football dataset available on kaggle given the dataset’s richness
+
+and opportunity to explore a larger variety of data potentially related to collegiate
+transfers (College Football Portal & Recruiting Statistics, 2023). This dataset would be
+downloaded as a .csv file. Preprocessing, such as consolidation of schools based on
+geographic region, may be conducted as a way to better elucidate trends.
+
+Team agreement
+Roles and responsibilities
+●​ Instead of having rigid and predefined roles, members will select roles and
+responsibilities as needed and based on their strengths and preferences.
+●​ All team members are expected to play a role in leading the project, with final decisions
+being an agreement or compromise among team members.
+●​ Roles and responsibilities may evolve over time to ensure work is distributed equally and
+team members are able to adequately understand all areas of the project.
+Communication protocols
+●​ A whats app chat will be established for adhoc communications. This will serve as the
+primary means of communication. Group members are expected to check and respond
+to messages regularly.
+●​ Team members will use class time to discuss any non-urgent questions or updates.
+Working arrangements
+●​ Primary working arrangements will include the allotted class time during Monday labs. A
+time to meet outside of class will be arranged based on a mutually agreed upon time.
+Adjustment can be made as needed with team members expected to communicate as
+soon as possible if they have a scheduling conflict.
+●​ Additional time to meet outside of our weekly meeting will be arranged on an as needed
+basis.
+Work allocation
+●​ Work will be distributed equally among team members. When possible tasks will be
+allocated based on team member strengths. All team members are expected to
+understand all aspects of the project.
+●​ If a team member encounters challenges with their assigned tasks, they should
+communicate this to the rest of the team as soon as possible to troubleshoot, reasses
+workload, and redistribute tasks as needed.
+Accountability
+●​ Team members are expected to uphold their responsibilities in terms of assigned tasks,
+team meetings, and any other project expectations. If a team member feels like
+themselves or someone else is not meeting expectations, they should communicate this
+promptly to the group for reassessment and resolution.
+
+Signatures:
+/s/ Marco Gandola
+Marco Gandola
+September 14, 2025
+
+/s/ Kate Gilliam
+Kate Gilliam
+September 14, 2025
+
+/s/ Gillian Schriever
+Gillian Schriever
+September 14,2025
+
+
