@@ -4,7 +4,7 @@
  */
 
 // Use same margin convention as main.js for consistency
-const chartMargin = {top: 30, right: 30, bottom: 50, left: 60};
+const chartMargin = { top: 30, right: 30, bottom: 50, left: 60 };
 const chartWidth = 400 - chartMargin.left - chartMargin.right;
 const chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
@@ -27,27 +27,27 @@ function renderClassYearChart(rawData) {
             transfer_count: +d.transfer_count
         }))
         .filter(d => d.transfer_count && !Number.isNaN(d.transfer_count));
-    
+
     const chartArea = d3.select("#class-year-chart-area");
-    
+
     // Remove only the SVG and error messages, keep h3 and caption
     chartArea.select("svg").remove();
     chartArea.select(".chart-empty-state").remove();
-    
+
     // Create tooltip (or select existing one)
     let tooltip = d3.select("body").select(".class-year-tooltip");
     if (tooltip.empty()) {
         tooltip = d3.select("body").append("div")
             .attr("class", "class-year-tooltip");
     }
-    
+
     if (!data.length) {
         chartArea.insert("p", ".figure-caption")
             .attr("class", "chart-empty-state")
             .text("No class year transfer data available.");
         return;
     }
-    
+
     // Create SVG - insert after h3 but before caption
     const svg = chartArea
         .insert("svg", ".figure-caption")
@@ -58,16 +58,17 @@ function renderClassYearChart(rawData) {
         .style("margin", "0 auto")
         .append("g")
         .attr("transform", `translate(${chartMargin.left},${chartMargin.top})`);
-    
+
     // Get unique periods and class years
     const periods = ['Pre-NIL', 'Post-NIL'];
-    const classYears = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
-    
+    // Reverse order so Freshman is at the top (matching stoplight Red->Green top-down)
+    const classYears = ['Senior', 'Junior', 'Sophomore', 'Freshman'];
+
     // Color scale for class years
     const colorScale = d3.scaleOrdinal()
         .domain(classYears)
         .range(chartColors.classYears);
-    
+
     // Create stacked data
     const stackedData = d3.stack()
         .keys(classYears)
@@ -75,25 +76,25 @@ function renderClassYearChart(rawData) {
             const item = data.find(item => item.period === d.period && item.class_year === key);
             return item ? item.transfer_count : 0;
         })(periods.map(period => ({ period })));
-    
+
     // Create scales
     const xScale = d3.scaleBand()
         .domain(periods)
         .range([0, chartWidth])
         .padding(0.4);
-    
-    const maxTotal = d3.max(periods, period => 
+
+    const maxTotal = d3.max(periods, period =>
         d3.sum(classYears, classYear => {
             const item = data.find(d => d.period === period && d.class_year === classYear);
             return item ? item.transfer_count : 0;
         })
     );
-    
+
     const yScale = d3.scaleLinear()
         .domain([0, maxTotal * 1.1])
         .nice()
         .range([chartHeight, 0]);
-    
+
     // Create bars with enhanced interactivity
     const groups = svg.selectAll(".layer")
         .data(stackedData)
@@ -101,7 +102,7 @@ function renderClassYearChart(rawData) {
         .append("g")
         .attr("class", "layer")
         .attr("fill", d => colorScale(d.key));
-    
+
     groups.selectAll("rect")
         .data(d => d)
         .enter()
@@ -115,7 +116,7 @@ function renderClassYearChart(rawData) {
         .attr("class", d => `bar-segment ${d.data.period.toLowerCase().replace('-', '')}`)
         .style("filter", "drop-shadow(0px 2px 3px rgba(0,0,0,0.1))")
         .style("cursor", "pointer")
-        .each(function(d) {
+        .each(function (d) {
             // Store additional data for tooltips
             const classYear = d3.select(this.parentNode).datum().key;
             const value = d[1] - d[0];
@@ -124,7 +125,7 @@ function renderClassYearChart(rawData) {
                 return item ? item.transfer_count : 0;
             });
             const percentage = (value / total * 100).toFixed(1);
-            
+
             d3.select(this)
                 .attr("data-class-year", classYear)
                 .attr("data-value", value)
@@ -132,24 +133,24 @@ function renderClassYearChart(rawData) {
                 .attr("data-percentage", percentage)
                 .attr("data-period", d.data.period);
         })
-        .on("mouseover", function(event, d) {
+        .on("mouseover", function (event, d) {
             const rect = d3.select(this);
             const classYear = rect.attr("data-class-year");
             const value = +rect.attr("data-value");
             const total = +rect.attr("data-total");
             const percentage = rect.attr("data-percentage");
             const period = rect.attr("data-period");
-            
+
             // Highlight effect
             rect.transition()
                 .duration(200)
                 .attr("stroke-width", 3)
                 .style("filter", "drop-shadow(0px 4px 8px rgba(0,0,0,0.3))");
-            
+
             // Calculate change if Post-NIL
             let changeInfo = "";
             if (period === "Post-NIL") {
-                const preNilItem = data.find(item => 
+                const preNilItem = data.find(item =>
                     item.period === "Pre-NIL" && item.class_year === classYear
                 );
                 if (preNilItem) {
@@ -157,16 +158,16 @@ function renderClassYearChart(rawData) {
                     const changeClass = change >= 0 ? 'change-positive' : 'change-negative';
                     const changeSymbol = change >= 0 ? '+' : '';
                     const arrow = change >= 0 ? '↑' : '↓';
-                    
+
                     changeInfo = `<br><span class="${changeClass}">${arrow} ${changeSymbol}${change.toFixed(1)}% vs Pre-NIL</span>`;
-                    
+
                     // Add special note for Sophomore surge
                     if (classYear === "Sophomore") {
                         changeInfo += '<br><em style="color:#ff9800;">⭐ Biggest shift - transfers moved earlier</em>';
                     }
                 }
             }
-            
+
             // Show tooltip
             tooltip.html(`
                 <strong>${classYear} (${period})</strong><br>
@@ -174,27 +175,27 @@ function renderClassYearChart(rawData) {
                 <span style="color:#999;">${percentage}% of ${period.toLowerCase()} transfers</span>
                 ${changeInfo}
             `)
-            .classed("visible", true)
-            .style("left", (event.pageX + 15) + "px")
-            .style("top", (event.pageY - 15) + "px");
+                .classed("visible", true)
+                .style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY - 15) + "px");
         })
-        .on("mouseout", function(event, d) {
+        .on("mouseout", function (event, d) {
             // Reset highlight
             d3.select(this)
                 .transition()
                 .duration(200)
                 .attr("stroke-width", 2)
                 .style("filter", "drop-shadow(0px 2px 3px rgba(0,0,0,0.1))");
-            
+
             // Hide tooltip
             tooltip.classed("visible", false);
         })
-        .on("mousemove", function(event) {
+        .on("mousemove", function (event) {
             tooltip
                 .style("left", (event.pageX + 15) + "px")
                 .style("top", (event.pageY - 15) + "px");
         });
-    
+
     // Add value labels on bars
     groups.selectAll(".bar-label")
         .data(d => d)
@@ -224,7 +225,7 @@ function renderClassYearChart(rawData) {
             const value = d[1] - d[0];
             return value > 0 ? d3.format(",")(value) : "";
         });
-    
+
     // Add x-axis
     const xAxis = d3.axisBottom(xScale);
     svg.append("g")
@@ -234,48 +235,52 @@ function renderClassYearChart(rawData) {
         .selectAll("text")
         .style("font-size", "12px")
         .style("font-weight", "bold");
-    
+
     // Add y-axis
     const yAxis = d3.axisLeft(yScale)
         .ticks(6)
         .tickFormat(d => d3.format(",")(d));
-    
+
     svg.append("g")
         .attr("class", "axis y-axis")
         .call(yAxis);
-    
+
     // Add axis labels
     svg.append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
         .attr("y", -45)
-        .attr("x", -chartHeight/2)
+        .attr("x", -chartHeight / 2)
         .attr("text-anchor", "middle")
         .text("Number of Transfers");
-    
+
     svg.append("text")
         .attr("class", "axis-label")
-        .attr("x", chartWidth/2)
+        .attr("x", chartWidth / 2)
         .attr("y", chartHeight + 45)
         .attr("text-anchor", "middle")
         .text("Period");
-    
+
     // Add legend
     const legend = svg.append("g")
         .attr("class", "legend")
         .attr("transform", `translate(${chartWidth + 10}, 0)`);
-    
-    classYears.forEach((classYear, i) => {
+
+    // Reverse classYears for legend to match visual stack order (Top to Bottom: Freshman -> Senior)
+    // Current classYears is ['Senior', 'Junior', 'Sophomore', 'Freshman'] (Bottom -> Top for stack)
+    const legendClassYears = [...classYears].reverse();
+
+    legendClassYears.forEach((classYear, i) => {
         const legendRow = legend.append("g")
             .attr("transform", `translate(0, ${i * 25})`);
-        
+
         legendRow.append("rect")
             .attr("width", 16)
             .attr("height", 16)
             .attr("fill", colorScale(classYear))
             .attr("stroke", "white")
             .attr("stroke-width", 1.5);
-        
+
         legendRow.append("text")
             .attr("x", 22)
             .attr("y", 12)
@@ -283,14 +288,14 @@ function renderClassYearChart(rawData) {
             .style("font-weight", "500")
             .text(classYear);
     });
-    
+
     // Add total labels above bars
     periods.forEach(period => {
         const total = d3.sum(classYears, classYear => {
             const item = data.find(d => d.period === period && d.class_year === classYear);
             return item ? item.transfer_count : 0;
         });
-        
+
         svg.append("text")
             .attr("x", xScale(period) + xScale.bandwidth() / 2)
             .attr("y", -10)
@@ -307,7 +312,7 @@ function renderClassYearChart(rawData) {
  */
 function initClassYearVisualization() {
     console.log("Loading class year transfer data...");
-    
+
     d3.csv("data/class_year_transfers.csv")
         .then(data => {
             console.log("Class Year Data loaded:", data);

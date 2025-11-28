@@ -4,13 +4,18 @@
 
 :root {
     --primary-color: #1a1a1a;
-    --secondary-color: #666;
-    --accent-color: #c9302c;
-    --background-color: #ffffff;
-    --text-light: #999;
-    --border-color: #ddd;
+    --secondary-color: #444;
+    --accent-color: #8b0000;
+    /* Darker red for vintage feel */
+    --background-color: #fdf6e3;
+    /* Aged paper */
+    --text-light: #666;
+    --border-color: #2c2c2c;
     --pre-nil-color: #5cb85c;
     --post-nil-color: #d9534f;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Old Standard TT', serif;
+    --font-masthead: 'UnifrakturMaguntia', cursive;
 }
 
 * {
@@ -20,66 +25,76 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     color: var(--primary-color);
-    background-color: #d0c4aa; /* desk/table color - restored */
+    background-color: #e6e0d4;
+    /* Desk background */
+    font-size: 18px;
 }
 
 /* ============================================================================
    HEADER
    ============================================================================ */
 
-header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    border-bottom: 4px solid var(--accent-color);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    position: relative;
-    overflow: hidden;
-}
+/* ============================================================================
+   HEADER & MASTHEAD
+   ============================================================================ */
 
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(255,255,255,0.03) 10px,
-            rgba(255,255,255,0.03) 20px
-        );
-    pointer-events: none;
+header {
+    background: var(--background-color);
+    color: var(--primary-color);
+    padding: 3rem 1rem 2rem;
+    text-align: center;
+    border-bottom: 5px double var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+    margin-bottom: 2rem;
+    position: relative;
 }
 
 header h1 {
-    font-family: 'Georgia', serif;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-family: var(--font-masthead);
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    /* Blackletter is usually mixed case or specific casing */
+    line-height: 1;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.masthead-bar {
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding: 0.5rem 0;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-family: var(--font-heading);
     font-weight: bold;
-    letter-spacing: 0.1em;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    max-width: 800px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
     margin-bottom: 0.5rem;
     opacity: 0.9;
 }
 
 .team {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    font-style: italic;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+    font-weight: bold;
 }
 
 /* ============================================================================
@@ -87,10 +102,11 @@ header h1 {
    ============================================================================ */
 
 main {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem;
-    background: linear-gradient(to bottom, white, #f8f9fa);
+    padding: 3rem;
+    background: var(--background-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ============================================================================
@@ -100,7 +116,7 @@ main {
 .story-section {
     margin-bottom: 4rem;
     padding-bottom: 3rem;
-    border-bottom: 3px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .story-section:last-child {
@@ -108,40 +124,103 @@ main {
 }
 
 h2 {
-    font-family: 'Georgia', serif;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
-    font-weight: bold;
-    letter-spacing: 0.03em;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
 }
 
 h3 {
-    font-family: 'Georgia', serif;
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
     color: var(--primary-color);
-    font-weight: normal;
+    font-weight: bold;
+    font-style: italic;
 }
 
 h4 {
-    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
 }
 
 .narrative-text {
     font-size: 1.1rem;
-    line-height: 1.8;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
-    color: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: justify;
 }
 
-.narrative-text.emphasis {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--accent-color);
-    margin-bottom: 2rem;
+/* Newspaper Columns */
+@media (min-width: 768px) {
+    .narrative-text {
+        column-count: 2;
+        column-gap: 2rem;
+        column-rule: 1px solid #ccc;
+    }
+
+    /* Span columns for emphasis or intro */
+    .narrative-text.intro,
+    .narrative-text.emphasis {
+        column-count: 1;
+        font-size: 1.3rem;
+        font-weight: normal;
+        font-style: italic;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+}
+
+.drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    line-height: 0.8;
+    padding-right: 0.5rem;
+    padding-top: 0.2rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.newspaper-article {
+    column-count: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid #ccc;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+.newspaper-article .narrative-text {
+    column-count: auto;
+    column-gap: normal;
+    column-rule: none;
+    margin-bottom: 0;
+}
+
+.newspaper-filler {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--secondary-color);
+    text-align: justify;
+    filter: blur(2px);
+    opacity: 0.5;
+    user-select: none;
+    display: inline;
+    /* Allows it to flow immediately after text if needed, or block if separate */
 }
 
 /* ============================================================================
@@ -152,7 +231,7 @@ h4 {
     background: #f6f1e7;
     border: 1px solid #d0c8b9;
     padding: 2rem;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
 }
 
 .newspaper-layout {
@@ -175,24 +254,20 @@ h4 {
     border-radius: 0;
     box-shadow: none;
     position: relative;
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.04) 0px,
-        rgba(0, 0, 0, 0.04) 1px,
-        transparent 1px,
-        transparent 24px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.04) 0px,
+            rgba(0, 0, 0, 0.04) 1px,
+            transparent 1px,
+            transparent 24px);
     font-family: 'Georgia', serif;
 }
 
 #hook .timeline-chart {
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0px,
-        rgba(0, 0, 0, 0.05) 1px,
-        transparent 1px,
-        transparent 22px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.05) 0px,
+            rgba(0, 0, 0, 0.05) 1px,
+            transparent 1px,
+            transparent 22px);
 }
 
 .timeline-chart h3 {
@@ -247,7 +322,7 @@ h4 {
 .nil-policy-line {
     stroke: var(--accent-color);
     stroke-width: 2px;
-    stroke-dasharray: 5,5;
+    stroke-dasharray: 5, 5;
 }
 
 .nil-policy-label {
@@ -362,7 +437,7 @@ h4 {
     padding: 1.5rem;
     background: #f6f1e7;
     border: 1px solid #c8c2b8;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
     position: relative;
     font-family: 'Georgia', serif;
 }
@@ -375,13 +450,11 @@ h4 {
     align-items: center;
     background: #fdf7ec;
     padding: 10px 10px 12px;
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0px,
-        rgba(0, 0, 0, 0.05) 1px,
-        transparent 1px,
-        transparent 22px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.05) 0px,
+            rgba(0, 0, 0, 0.05) 1px,
+            transparent 1px,
+            transparent 22px);
     border: 1px solid #111;
     position: relative;
 }
@@ -413,13 +486,11 @@ h4 {
 
 #class-year-chart-area svg {
     border: 1px dashed #777;
-    background: repeating-linear-gradient(
-        45deg,
-        #f9f2e6,
-        #f9f2e6 4px,
-        #f3e6d3 4px,
-        #f3e6d3 8px
-    );
+    background: repeating-linear-gradient(45deg,
+            #f9f2e6,
+            #f9f2e6 4px,
+            #f3e6d3 4px,
+            #f3e6d3 8px);
     padding: 10px;
 }
 
@@ -470,13 +541,11 @@ h4 {
     align-items: center;
     background: #fdf7ec;
     padding: 10px 10px 12px;
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0px,
-        rgba(0, 0, 0, 0.05) 1px,
-        transparent 1px,
-        transparent 22px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.05) 0px,
+            rgba(0, 0, 0, 0.05) 1px,
+            transparent 1px,
+            transparent 22px);
     border: 1px solid #111;
     position: relative;
 }
@@ -508,13 +577,11 @@ h4 {
 
 #volume-chart-area svg {
     border: 1px dashed #777;
-    background: repeating-linear-gradient(
-        45deg,
-        #f9f2e6,
-        #f9f2e6 4px,
-        #f3e6d3 4px,
-        #f3e6d3 8px
-    );
+    background: repeating-linear-gradient(45deg,
+            #f9f2e6,
+            #f9f2e6 4px,
+            #f3e6d3 4px,
+            #f3e6d3 8px);
     padding: 10px;
     overflow: visible;
 }
@@ -536,7 +603,7 @@ h4 {
 }
 
 #volume-chart-area .cumulative-line {
-    filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.2));
+    filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
 }
 
 #volume-chart-area .rate-annotation {
@@ -569,7 +636,7 @@ h4 {
     border-left: 4px solid var(--pre-nil-color);
 }
 
-.stoplight-box + .stoplight-box {
+.stoplight-box+.stoplight-box {
     border-left-color: var(--post-nil-color);
 }
 
@@ -588,7 +655,7 @@ footer {
     text-align: center;
     color: white;
     font-size: 0.9rem;
-    box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
 }
 
 footer p {
@@ -603,28 +670,28 @@ footer p {
     header h1 {
         font-size: 2rem;
     }
-    
+
     .subtitle {
         font-size: 1rem;
     }
-    
+
     main {
         padding: 1rem;
     }
-    
+
     .story-section {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
     }
-    
+
     h2 {
         font-size: 1.5rem;
     }
-    
+
     .narrative-text {
         font-size: 1rem;
     }
-    
+
     .narrative-text.emphasis {
         font-size: 1.1rem;
     }

@@ -4,7 +4,7 @@
  */
 
 // D3 Margin Convention
-const margin = {top: 30, right: 30, bottom: 50, left: 60};
+const margin = { top: 30, right: 30, bottom: 50, left: 60 };
 const width = 400 - margin.left - margin.right;
 const height = 300 - margin.top - margin.bottom;
 
@@ -31,17 +31,17 @@ function renderCFPTimeline(rawData) {
         }))
         .filter(d => d.month && !Number.isNaN(d.transfer_count))
         .sort((a, b) => a.month - b.month);
-    
+
     const chartArea = d3.select("#cfp-chart-area");
     chartArea.selectAll("*").remove();
-    
+
     if (!data.length) {
         chartArea.append("p")
             .attr("class", "chart-empty-state")
             .text("No CFP transfer data for this selection.");
         return;
     }
-    
+
     // Create SVG
     const svg = chartArea
         .append("svg")
@@ -49,23 +49,23 @@ function renderCFPTimeline(rawData) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
-    
+
     // Create scales
     const xScale = d3.scaleTime()
         .domain(d3.extent(data, d => d.month))
         .range([0, width]);
-    
+
     const yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.transfer_count)])
         .nice()
         .range([height, 0]);
-    
+
     // Create line generator
     const line = d3.line()
         .x(d => xScale(d.month))
         .y(d => yScale(d.transfer_count))
         .curve(d3.curveMonotoneX);
-    
+
     // Add NIL policy line
     svg.append("line")
         .attr("x1", xScale(nilPolicyDate))
@@ -76,7 +76,7 @@ function renderCFPTimeline(rawData) {
         .style("stroke", colors.nilLine)
         .style("stroke-width", 2)
         .style("stroke-dasharray", "5,5");
-    
+
     // Add NIL policy label
     svg.append("text")
         .attr("x", xScale(nilPolicyDate))
@@ -86,11 +86,11 @@ function renderCFPTimeline(rawData) {
         .style("fill", colors.nilLine)
         .style("font-size", "10px")
         .text("NIL Policy");
-    
+
     // Create areas for pre and post NIL
     const preNilData = data.filter(d => !d.post_nil);
     const postNilData = data.filter(d => d.post_nil);
-    
+
     // Pre-NIL area
     if (preNilData.length > 0) {
         const areaPre = d3.area()
@@ -98,13 +98,13 @@ function renderCFPTimeline(rawData) {
             .y0(height)
             .y1(d => yScale(d.transfer_count))
             .curve(d3.curveMonotoneX);
-        
+
         svg.append("path")
             .datum(preNilData)
             .attr("fill", colors.preNil)
             .attr("fill-opacity", 0.3)
             .attr("d", areaPre);
-        
+
         svg.append("path")
             .datum(preNilData)
             .attr("class", "line pre-nil-line")
@@ -113,7 +113,7 @@ function renderCFPTimeline(rawData) {
             .style("stroke-width", 2)
             .style("fill", "none");
     }
-    
+
     // Post-NIL area
     if (postNilData.length > 0) {
         const areaPost = d3.area()
@@ -121,13 +121,13 @@ function renderCFPTimeline(rawData) {
             .y0(height)
             .y1(d => yScale(d.transfer_count))
             .curve(d3.curveMonotoneX);
-        
+
         svg.append("path")
             .datum(postNilData)
             .attr("fill", colors.postNil)
             .attr("fill-opacity", 0.3)
             .attr("d", areaPost);
-        
+
         svg.append("path")
             .datum(postNilData)
             .attr("class", "line post-nil-line")
@@ -136,11 +136,11 @@ function renderCFPTimeline(rawData) {
             .style("stroke-width", 2)
             .style("fill", "none");
     }
-    
+
     // Add x-axis
     const xAxis = d3.axisBottom(xScale)
         .tickFormat(d3.timeFormat("%b %Y"));
-    
+
     svg.append("g")
         .attr("class", "axis x-axis")
         .attr("transform", `translate(0,${height})`)
@@ -150,26 +150,26 @@ function renderCFPTimeline(rawData) {
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
         .attr("transform", "rotate(-45)");
-    
+
     // Add y-axis
     const yAxis = d3.axisLeft(yScale);
-    
+
     svg.append("g")
         .attr("class", "axis y-axis")
         .call(yAxis);
-    
+
     // Add axis labels
     svg.append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
         .attr("y", -45)
-        .attr("x", -height/2)
+        .attr("x", -height / 2)
         .attr("text-anchor", "middle")
         .text("Transfer Count");
-    
+
     svg.append("text")
         .attr("class", "axis-label")
-        .attr("x", width/2)
+        .attr("x", width / 2)
         .attr("y", height + 50)
         .attr("text-anchor", "middle")
         .text("Month");
@@ -186,43 +186,43 @@ function renderNCAATimeline(rawData) {
         }))
         .filter(d => !Number.isNaN(d.year) && !Number.isNaN(d.total_transfers))
         .sort((a, b) => a.year - b.year);
-    
+
     const chartArea = d3.select("#ncaa-chart-area");
     chartArea.selectAll("*").remove();
-    
+
     if (!data.length) {
         chartArea.append("p")
             .attr("class", "chart-empty-state")
             .text("No NCAA transfer data for this selection.");
         return;
     }
-    
+
     const svg = chartArea
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom + 5)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
-    
+
     const xScale = d3.scaleLinear()
         .domain(d3.extent(data, d => d.year))
         .range([0, width]);
-    
+
     const yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.total_transfers)])
         .nice()
         .range([height, 0]);
-    
+
     // Create line generator
     const line = d3.line()
         .x(d => xScale(d.year))
         .y(d => yScale(d.total_transfers))
         .curve(d3.curveMonotoneX);
-    
+
     // Determine which data is post-NIL
     const preNilData = data.filter(d => d.year < nilPolicyYear);
     const postNilData = data.filter(d => d.year >= nilPolicyYear);
-    
+
     // Add areas
     if (preNilData.length > 0) {
         const areaPre = d3.area()
@@ -230,13 +230,13 @@ function renderNCAATimeline(rawData) {
             .y0(height)
             .y1(d => yScale(d.total_transfers))
             .curve(d3.curveMonotoneX);
-        
+
         svg.append("path")
             .datum(preNilData)
             .attr("fill", colors.preNil)
             .attr("fill-opacity", 0.3)
             .attr("d", areaPre);
-        
+
         svg.append("path")
             .datum(preNilData)
             .attr("class", "line pre-nil-line")
@@ -244,20 +244,20 @@ function renderNCAATimeline(rawData) {
             .style("stroke", colors.preNil)
             .style("stroke-width", 2);
     }
-    
+
     const areaPost = d3.area()
         .x(d => xScale(d.year))
         .y0(height)
         .y1(d => yScale(d.total_transfers))
         .curve(d3.curveMonotoneX);
-    
+
     if (postNilData.length > 0) {
         svg.append("path")
             .datum(postNilData)
             .attr("fill", colors.postNil)
             .attr("fill-opacity", 0.3)
             .attr("d", areaPost);
-        
+
         svg.append("path")
             .datum(postNilData)
             .attr("class", "line post-nil-line")
@@ -265,7 +265,7 @@ function renderNCAATimeline(rawData) {
             .style("stroke", colors.postNil)
             .style("stroke-width", 2);
     }
-    
+
     // Add circles for data points
     svg.selectAll("circle")
         .data(data)
@@ -277,42 +277,42 @@ function renderNCAATimeline(rawData) {
         .attr("fill", d => d.year >= 2021 ? colors.postNil : colors.preNil)
         .attr("stroke", "white")
         .attr("stroke-width", 2);
-    
+
     // Add x-axis
     const yearTicks = Array.from(new Set(data.map(d => d.year))).sort((a, b) => a - b);
     const xAxis = d3.axisBottom(xScale)
         .tickValues(yearTicks)
         .tickFormat(d3.format("d"));
-    
+
     svg.append("g")
         .attr("class", "axis x-axis")
         .attr("transform", `translate(0,${height})`)
         .call(xAxis);
-    
+
     // Add y-axis
     const yAxis = d3.axisLeft(yScale)
-        .tickFormat(d => d/1000 + "k");
-    
+        .tickFormat(d => d / 1000 + "k");
+
     svg.append("g")
         .attr("class", "axis y-axis")
         .call(yAxis);
-    
+
     // Add axis labels
     svg.append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
         .attr("y", -45)
-        .attr("x", -height/2)
+        .attr("x", -height / 2)
         .attr("text-anchor", "middle")
         .text("Total Transfers");
-    
+
     svg.append("text")
         .attr("class", "axis-label")
-        .attr("x", width/2)
+        .attr("x", width / 2)
         .attr("y", height + 50)
         .attr("text-anchor", "middle")
         .text("Year");
-    
+
     // Add values labels on points
     svg.selectAll(".value-label")
         .data(data)
@@ -334,27 +334,48 @@ function renderNCAATimeline(rawData) {
 function setupPositionFilter(allData, positionData) {
     const select = document.getElementById('position-filter');
     if (!select) return;
-    
+
     const titleEl = document.querySelector('#cfp-timeline h3');
     const defaultTitle = titleEl ? titleEl.textContent : '';
-    
+
     const positionsMap = d3.group(positionData, d => d.position);
+    // Major positions to include
+    const majorPositions = new Set(['QB', 'RB', 'WR', 'TE', 'OL', 'DL', 'LB', 'DB', 'CB', 'S', 'K', 'P', 'LS']);
+
+    // Mapping for full names
+    const positionNamesMap = {
+        'QB': 'Quarterback',
+        'RB': 'Running Back',
+        'WR': 'Wide Receiver',
+        'TE': 'Tight End',
+        'OL': 'Offensive Line',
+        'DL': 'Defensive Line',
+        'LB': 'Linebacker',
+        'DB': 'Defensive Back',
+        'CB': 'Cornerback',
+        'S': 'Safety',
+        'K': 'Kicker',
+        'P': 'Punter',
+        'LS': 'Long Snapper'
+    };
+
     const positionNames = Array.from(positionsMap.keys())
-        .filter(name => name && name.toLowerCase() !== 'unknown')
+        .filter(name => name && name.toLowerCase() !== 'unknown' && majorPositions.has(name))
         .sort((a, b) => {
             // Sort by popularity (count transfers for each position)
             const countA = positionsMap.get(a).reduce((sum, d) => sum + d.transfer_count, 0);
             const countB = positionsMap.get(b).reduce((sum, d) => sum + d.transfer_count, 0);
             return countB - countA;  // descending order
         });
-    
+
     positionNames.forEach(name => {
         const option = document.createElement('option');
         option.value = name;
-        option.textContent = name;
+        const fullName = positionNamesMap[name] ? `${name} (${positionNamesMap[name]})` : name;
+        option.textContent = fullName;
         select.appendChild(option);
     });
-    
+
     select.addEventListener('change', event => {
         const position = event.target.value;
         if (position === 'All Positions') {
@@ -363,7 +384,7 @@ function setupPositionFilter(allData, positionData) {
         } else {
             if (titleEl) titleEl.textContent = `College Football Portal (${position})`;
             const rows = positionsMap.get(position) || [];
-            
+
             // Aggregate by month (sum across the same month)
             const aggregated = d3.rollup(
                 rows,
@@ -373,13 +394,13 @@ function setupPositionFilter(allData, positionData) {
                 }),
                 d => d.month
             );
-            
+
             const filteredData = Array.from(aggregated, ([month, values]) => ({
                 month: month,
                 transfer_count: values.transfer_count,
                 post_nil: values.post_nil
             }));
-            
+
             renderCFPTimeline(filteredData);
         }
     });
@@ -391,22 +412,22 @@ function setupPositionFilter(allData, positionData) {
 function setupSportFilter(allData, sportData) {
     const select = document.getElementById('sport-filter');
     if (!select) return;
-    
+
     const titleEl = document.querySelector('#ncaa-timeline h3');
     const defaultTitle = titleEl ? titleEl.textContent : '';
-    
+
     const sportsMap = d3.group(sportData, d => d.Sport);
     const sportNames = Array.from(sportsMap.keys())
         .filter(name => name && name.toLowerCase() !== 'all')
         .sort((a, b) => a.localeCompare(b));
-    
+
     sportNames.forEach(name => {
         const option = document.createElement('option');
         option.value = name;
         option.textContent = name;
         select.appendChild(option);
     });
-    
+
     select.addEventListener('change', event => {
         const sport = event.target.value;
         if (sport === 'All Sports') {
@@ -425,7 +446,7 @@ function setupSportFilter(allData, sportData) {
  */
 function initVisualizations() {
     console.log("Loading data for D3 visualizations...");
-    
+
     // Load all datasets including position-level data
     Promise.all([
         d3.csv("data/cfp_monthly_transfers.csv"),
@@ -437,11 +458,11 @@ function initVisualizations() {
         console.log("CFP Position Data loaded:", cfpPositionData);
         console.log("NCAA Data loaded:", ncaaData);
         console.log("NCAA Sport Data loaded:", ncaaSportData);
-        
+
         // Create visualizations with default (all positions/sports) view
         renderCFPTimeline(cfpData);
         renderNCAATimeline(ncaaData);
-        
+
         // Setup position filter for CFP chart
         const parsedPositionRows = cfpPositionData.map(d => ({
             position: d.position,
@@ -450,7 +471,7 @@ function initVisualizations() {
             post_nil: d.post_nil
         }));
         setupPositionFilter(cfpData, parsedPositionRows);
-        
+
         // Setup sport filter for NCAA chart
         const parsedSportRows = ncaaSportData.map(d => ({
             Sport: d.Sport,

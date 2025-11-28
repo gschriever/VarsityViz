@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varsity Shifts: Understanding the Nature of Athlete Transfers</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Vintage newspaper fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Old+Standard+TT:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Old+Standard+TT:wght@400;700&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -16,18 +25,21 @@
 
         /* Desk background */
         body {
-            background: #d0c4aa; /* desk/table color */
+            background: #d0c4aa;
+            /* desk/table color */
             margin: 0;
             padding: 24px 0 40px;
         }
 
         /* === Vintage newspaper framing for top section === */
         .paper-shell {
-            max-width: 1120px;            /* wider page */
+            max-width: 1120px;
+            /* wider page */
             margin: 0 auto 32px;
-            background: #f9f2e6;          /* aged paper */
+            background: #f9f2e6;
+            /* aged paper */
             border: 1px solid #b09a7a;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
             padding: 32px 56px 40px;
             position: relative;
         }
@@ -37,8 +49,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(255,255,255,0.3), transparent 60%),
-                radial-gradient(circle at bottom right, rgba(0,0,0,0.06), transparent 60%);
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.3), transparent 60%),
+                radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.06), transparent 60%);
             pointer-events: none;
             mix-blend-mode: multiply;
         }
@@ -74,7 +86,8 @@
         }
 
         .paper-shell h1 {
-            font-family: "Playfair Display", "Cinzel", "Times New Roman", serif; /* cleaner old-school masthead */
+            font-family: "Playfair Display", "Cinzel", "Times New Roman", serif;
+            /* cleaner old-school masthead */
             font-size: 3.2rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
@@ -172,6 +185,7 @@
             text-align: center;
             margin: 4px 0 8px;
         }
+
         .chart-filter-controls {
             display: flex;
             justify-content: flex-end;
@@ -183,9 +197,11 @@
             letter-spacing: 0.12em;
             margin-bottom: 8px;
         }
+
         .chart-filter-controls label {
             color: #4a4033;
         }
+
         .chart-filter-controls select {
             font-family: inherit;
             font-size: 0.8rem;
@@ -198,13 +214,11 @@
         .paper-shell #ncaa-chart-area {
             min-height: 180px;
             border: 1px dashed #777;
-            background: repeating-linear-gradient(
-                45deg,
-                #f9f2e6,
-                #f9f2e6 4px,
-                #f3e6d3 4px,
-                #f3e6d3 8px
-            );
+            background: repeating-linear-gradient(45deg,
+                    #f9f2e6,
+                    #f9f2e6 4px,
+                    #f3e6d3 4px,
+                    #f3e6d3 8px);
         }
 
         .paper-shell .figure-caption {
@@ -231,13 +245,16 @@
             .paper-shell {
                 padding: 24px 16px 32px;
             }
+
             .paper-shell h1 {
                 font-size: 2.4rem;
                 letter-spacing: 0.12em;
             }
+
             .paper-shell .front-page-heading h2 {
                 font-size: 1.6rem;
             }
+
             .paper-shell #hook-viz-container.newspaper-layout {
                 grid-template-columns: 1fr;
             }
@@ -275,7 +292,7 @@
             border-radius: 25px;
             padding: 25px 20px;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4),
-                        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
             display: inline-block;
             position: relative;
         }
@@ -315,11 +332,11 @@
             border-radius: 50%;
             border: 4px solid #0d0d0d;
             box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.5),
-                        0 2px 8px rgba(0, 0, 0, 0.3);
+                0 2px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 50%);
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 50%);
         }
 
         .stoplight-light::after {
@@ -329,7 +346,7 @@
             left: 20%;
             width: 35%;
             height: 35%;
-            background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
             border-radius: 50%;
             filter: blur(4px);
         }
@@ -337,7 +354,7 @@
         .stoplight-light:hover {
             transform: scale(1.08);
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.4),
-                        inset 0 6px 12px rgba(0, 0, 0, 0.5);
+                inset 0 6px 12px rgba(0, 0, 0, 0.5);
         }
 
         .light-stats {
@@ -383,8 +400,15 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(253, 126, 20, 0.6), inset 0 6px 12px rgba(0, 0, 0, 0.5); }
-            50% { box-shadow: 0 0 35px rgba(253, 126, 20, 0.9), inset 0 6px 12px rgba(0, 0, 0, 0.5); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(253, 126, 20, 0.6), inset 0 6px 12px rgba(0, 0, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 35px rgba(253, 126, 20, 0.9), inset 0 6px 12px rgba(0, 0, 0, 0.5);
+            }
         }
 
         .stoplight-subtitle {
@@ -879,18 +903,22 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Vintage newspaper top section (title + hook only) -->
     <div class="paper-shell">
         <div class="paper-content">
             <header>
-                <div class="masthead-topline">
-                    Vol. XCV · No. 9
+                <h1>VARSITY SHIFTS</h1>
+                <div class="masthead-bar">
+                    <span>VOL. I, NO. 1</span>
+                    <span>•</span>
+                    <span>NOVEMBER 28, 2025</span>
+                    <span>•</span>
+                    <span>PRICE: FREE</span>
                 </div>
-                <p class="masthead-flag">VarsityViz • Cambridge, Massachusetts • Special NIL Report</p>
-                <h1>Varsity Shifts</h1>
                 <p class="subtitle">Understanding the Nature of Athlete Transfers</p>
-                <p class="team">Marco Gandola, Kate Gilliam, Gillian Schriever</p>
+                <p class="team">By Marco Gandola, Kate Gilliam, Gillian Schriever</p>
             </header>
             <main>
                 <!-- HOOK SECTION in newspaper style -->
@@ -899,11 +927,22 @@
                         <div class="front-page-heading">
                             <h2>The NIL Era: A Game Changer</h2>
                             <p class="front-subhead">IN 2021, COLLEGE ATHLETES GAINED NEW FREEDOM AND MOBILITY.</p>
-                            <p class="front-lede">
-                                In July 2021, the NCAA adopted Name, Image, and Likeness (NIL) policy, fundamentally changing college athletics. The transfer portal exploded.
-                            </p>
+                            <div class="newspaper-article">
+                                <p class="front-lede">
+                                    In July 2021, the NCAA adopted Name, Image, and Likeness (NIL) policy, fundamentally
+                                    changing college athletics. The transfer portal exploded.
+                                </p>
+                            </div>
+                            <br><br>
+                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                            velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+                            aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
+                            corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel
+                            eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                            vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
                         </div>
-                        <div id="hook-viz-container" class="newspaper-layout">
+                    </div>
+                    <div id="hook-viz-container" class="newspaper-layout">
                         <div id="cfp-timeline" class="timeline-chart">
                             <h3>College Football Transfer Portal</h3>
                             <div class="chart-filter-controls">
@@ -914,27 +953,29 @@
                             </div>
                             <div id="cfp-chart-area"></div>
                             <p class="figure-caption">
-                                Figure 1. Year-by-year evolution of entries into the College Football transfer portal following the NIL policy shift.
+                                Figure 1. Year-by-year evolution of entries into the College Football transfer
+                                portal following the NIL policy shift.
                             </p>
                         </div>
-                            <div id="ncaa-timeline" class="timeline-chart">
-                                <h3>NCAA Division I Transfers (All Sports)</h3>
-                                <div class="chart-filter-controls">
-                                    <label for="sport-filter">Sport</label>
-                                    <select id="sport-filter" aria-label="Filter NCAA chart by sport">
-                                        <option value="All Sports">All Sports</option>
-                                    </select>
-                                </div>
-                                <div id="ncaa-chart-area"></div>
-                                <p class="figure-caption">
-                                    Figure 2. Aggregate transfer trends across NCAA Division I sports, highlighting changes in athlete mobility.
-                                </p>
+                        <div id="ncaa-timeline" class="timeline-chart">
+                            <h3>NCAA Division I Transfers (All Sports)</h3>
+                            <div class="chart-filter-controls">
+                                <label for="sport-filter">Sport</label>
+                                <select id="sport-filter" aria-label="Filter NCAA chart by sport">
+                                    <option value="All Sports">All Sports</option>
+                                </select>
                             </div>
+                            <div id="ncaa-chart-area"></div>
+                            <p class="figure-caption">
+                                Figure 2. Aggregate transfer trends across NCAA Division I sports, highlighting
+                                changes in athlete mobility.
+                            </p>
                         </div>
                     </div>
-                </section>
-            </main>
         </div>
+        </section>
+        </main>
+    </div>
     </div>
 
     <!-- Everything from Rising Insights onward: original layout/styles -->
@@ -942,9 +983,18 @@
         <!-- RISING INSIGHTS SECTION -->
         <section id="rising-insights" class="story-section">
             <h2>Rising Insights</h2>
-            <p class="narrative-text">
-                Not only did more athletes transfer, but they began transferring earlier in their careers.
-            </p>
+            <div class="newspaper-article">
+                <p class="narrative-text">
+                    Not only did more athletes transfer, but they began transferring earlier in their careers.
+                </p>
+                <div class="newspaper-filler">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                    dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+                    est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
+                </div>
+            </div>
             <p class="narrative-text emphasis">
                 Athletes Transfer More and Sooner
             </p>
@@ -953,7 +1003,8 @@
                     <h3>Cumulative Transfer Growth: Accelerating Post-NIL</h3>
                     <!-- Chart will be rendered here by D3 -->
                     <p class="figure-caption">
-                        Figure 3. Cumulative transfer volume over time, showing the dramatic acceleration in transfer rates following the July 2021 NIL policy implementation.
+                        Figure 3. Cumulative transfer volume over time, showing the dramatic acceleration in transfer
+                        rates following the July 2021 NIL policy implementation.
                     </p>
                 </div>
             </div>
@@ -962,83 +1013,124 @@
                     <h3>Transfers by Class Year: Pre-NIL vs Post-NIL</h3>
                     <!-- Chart will be rendered here by D3 -->
                     <p class="figure-caption">
-                        Figure 4. Distribution of transfers across class years, comparing Pre-NIL and Post-NIL periods showing the shift toward earlier transfers.
+                        Figure 4. Distribution of transfers across class years, comparing Pre-NIL and Post-NIL periods
+                        showing the shift toward earlier transfers.
                     </p>
                 </div>
             </div>
         </section>
-        
+
         <!-- MAIN MESSAGE SECTION -->
         <section id="main-message" class="story-section">
             <h2>The Transfer Signal Turned Green Earlier</h2>
-            <p class="narrative-text" style="font-size: 1.05rem; line-height: 1.7; max-width: 900px; margin: 20px auto;">
-                Post-NIL, sophomore year became the new peak transfer period, with transfers surging <strong>154%</strong> as athlete mobility shifted dramatically earlier in college careers. Athletic departments must now focus retention efforts on underclassmen, not just upperclassmen.
-            </p>
-            <div id="stoplight-container">
-                <!-- Stoplights will be rendered here by D3 -->
-            </div>
-            <div class="figure-caption" style="max-width: 900px; margin: 20px auto; padding: 20px; background: #f8f9fa; border-left: 4px solid #0066cc; border-radius: 4px;">
-                <p style="margin: 0 0 10px 0; font-size: 0.95rem; line-height: 1.6;">
-                    <strong>Pre-NIL Pattern:</strong> Transfers concentrated in Junior (35%) and Senior (30%) years—the traditional pattern where athletes waited until upperclassman status to seek new opportunities.
-                </p>
-                <p style="margin: 10px 0; font-size: 0.95rem; line-height: 1.6;">
-                    <strong>Post-NIL Pattern:</strong> Sophomores now dominate (38%), representing a fundamental shift where transfers happen 2+ years earlier than before. The sophomore "orange light" now burns brightest.
-                </p>
-                <p style="margin: 10px 0 0 0; font-size: 0.95rem; line-height: 1.6; background: #fff3cd; padding: 12px; border-radius: 4px;">
-                    <strong>⚡ Key Insight for Athletic Directors:</strong> Retention conversations and NIL strategies must begin in sophomore year, not junior/senior year. The window for intervention has moved earlier in the eligibility timeline.
-                </p>
-            </div>
-        </section>
-        
-        <!-- SOLUTION SECTION -->
-        <section id="solution" class="story-section">
-            <h2>Rethinking the Playbook</h2>
-            <p class="narrative-text">
-                Athletic departments must adapt: build relationships early, manage NIL strategically, and rethink retention programs.
-            </p>
-            <div id="whiteboard-section">
-                <div class="whiteboard-header">
-                    <h3>The Transfer Portal Playbook</h3>
-                    <p>Toggle the set to see how athletic departments have to redraw their playbook for the NIL era.</p>
-                </div>
-                <div class="whiteboard-controls" role="group" aria-label="Whiteboard play selection">
-                    <button type="button" class="whiteboard-button active" data-play="legacy" aria-pressed="true">
-                        Pre-NIL
-                    </button>
-                    <button type="button" class="whiteboard-button" data-play="nil" aria-pressed="false">
-                        Post-NIL
-                    </button>
-                </div>
-                <div class="whiteboard-layout">
-                    <div class="whiteboard">
-                        <svg id="whiteboard-drawing" viewBox="0 0 600 360" role="img" aria-label="Coach's whiteboard play diagram">
-                            <!-- Diagram rendered with JavaScript -->
-                        </svg>
+            <section id="stoplight-section" class="story-section">
+                <h2>The New Transfer Timeline</h2>
+                <div class="newspaper-article">
+                    <p class="narrative-text">
+                        Post-NIL, sophomore year became the new peak transfer period, with transfers surging
+                        <strong>154%</strong> as athlete mobility shifted dramatically earlier in college careers.
+                        Athletic
+                        departments must now focus retention efforts on underclassmen, not just upperclassmen.
+                    </p>
+                    <div class="newspaper-filler">
+                        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi
+                        ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
+                        velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
+                        pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                        cupiditate non provident.
                     </div>
-                    <aside class="whiteboard-callouts" aria-live="polite">
-                        <div class="whiteboard-legend" aria-hidden="true">
-                            <span class="legend-title">Class Key</span>
-                            <div class="legend-items">
-                                <span class="legend-item"><span class="legend-dot fr"></span>Freshman</span>
-                                <span class="legend-item"><span class="legend-dot so"></span>Sophomore</span>
-                                <span class="legend-item"><span class="legend-dot jr"></span>Junior</span>
-                                <span class="legend-item"><span class="legend-dot sr"></span>Senior</span>
-                            </div>
-                        </div>
-                        <h4 class="callout-title whiteboard-era-heading">Pre-NIL Era</h4>
-                        <ul class="callout-list era-bullets"></ul>
-                        <div class="post-nil-toggle-label"></div>
-                    </aside>
                 </div>
-            </div>
-        </section>
+                <div id="stoplight-container">
+                    <!-- Stoplights will be rendered here by D3 -->
+                </div>
+                <div class="figure-caption"
+                    style="max-width: 900px; margin: 20px auto; padding: 20px; background: #f8f9fa; border-left: 4px solid #0066cc; border-radius: 4px;">
+                    <p style="margin: 0 0 10px 0; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>Pre-NIL Pattern:</strong> Transfers concentrated in Junior (35%) and Senior (30%)
+                        years—the
+                        traditional pattern where athletes waited until upperclassman status to seek new opportunities.
+                    </p>
+                    <p style="margin: 10px 0; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>Post-NIL Pattern:</strong> Sophomores now dominate (38%), representing a fundamental
+                        shift
+                        where transfers happen 2+ years earlier than before. The sophomore "orange light" now burns
+                        brightest.
+                    </p>
+                    <p
+                        style="margin: 10px 0 0 0; font-size: 0.95rem; line-height: 1.6; background: #fff3cd; padding: 12px; border-radius: 4px;">
+                        <strong>⚡ Key Insight for Athletic Directors:</strong> Retention conversations and NIL
+                        strategies
+                        must begin in sophomore year, not junior/senior year. The window for intervention has moved
+                        earlier
+                        in the eligibility timeline.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SOLUTION SECTION -->
+            <section id="playbook-section" class="story-section">
+                <h2>The New Playbook</h2>
+                <div class="newspaper-article">
+                    <p class="narrative-text">
+                        Athletic departments must adapt: build relationships early, manage NIL strategically, and
+                        rethink
+                        retention programs.
+                    </p>
+                    <div class="newspaper-filler">
+                        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod
+                        maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+                        Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
+                        voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
+                        sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
+                        doloribus asperiores repellat.
+                    </div>
+                </div>
+                <div id="whiteboard-section">
+                    <div class="whiteboard-header">
+                        <h3>The Transfer Portal Playbook</h3>
+                        <p>Toggle the set to see how athletic departments have to redraw their playbook for the NIL era.
+                        </p>
+                    </div>
+                    <div class="whiteboard-controls" role="group" aria-label="Whiteboard play selection">
+                        <button type="button" class="whiteboard-button active" data-play="legacy" aria-pressed="true">
+                            Pre-NIL
+                        </button>
+                        <button type="button" class="whiteboard-button" data-play="nil" aria-pressed="false">
+                            Post-NIL
+                        </button>
+                    </div>
+                    <div class="whiteboard-layout">
+                        <div class="whiteboard">
+                            <svg id="whiteboard-drawing" viewBox="0 0 600 360" role="img"
+                                aria-label="Coach's whiteboard play diagram">
+                                <!-- Diagram rendered with JavaScript -->
+                            </svg>
+                        </div>
+                        <aside class="whiteboard-callouts" aria-live="polite">
+                            <div class="whiteboard-legend" aria-hidden="true">
+                                <span class="legend-title">Class Key</span>
+                                <div class="legend-items">
+                                    <span class="legend-item"><span class="legend-dot fr"></span>Freshman</span>
+                                    <span class="legend-item"><span class="legend-dot so"></span>Sophomore</span>
+                                    <span class="legend-item"><span class="legend-dot jr"></span>Junior</span>
+                                    <span class="legend-item"><span class="legend-dot sr"></span>Senior</span>
+                                </div>
+                            </div>
+                            <h4 class="callout-title whiteboard-era-heading">Pre-NIL Era</h4>
+                            <ul class="callout-list era-bullets"></ul>
+                            <div class="post-nil-toggle-label"></div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
     </main>
-    
+
     <footer>
         <p>© 2024 VarsityViz | CS171 Final Project</p>
         <p>Data Sources: Kaggle College Football Portal Data, NCAA Transfer Portal Reports</p>
     </footer>
-    
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/volume_insights.js"></script>
@@ -1046,4 +1138,5 @@
     <script src="js/stoplight.js"></script>
     <script src="js/whiteboard.js"></script>
 </body>
+
 </html>
