@@ -209,7 +209,7 @@ function renderNCAATimeline(rawData) {
         .range([0, width]);
 
     const yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.total_transfers)])
+        .domain([25000, 31000])
         .nice()
         .range([height, 0]);
 
@@ -291,6 +291,7 @@ function renderNCAATimeline(rawData) {
 
     // Add y-axis
     const yAxis = d3.axisLeft(yScale)
+        .tickValues([25000, 28000, 31000])
         .tickFormat(d => d / 1000 + "k");
 
     svg.append("g")

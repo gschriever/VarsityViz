@@ -11,6 +11,11 @@
         const boardMargin = 28;
         const transitionDuration = 750;
 
+        // Ensure SVG has explicit dimensions to prevent resizing
+        svg.attr("width", width)
+           .attr("height", height)
+           .style("display", "block");
+
         svg.selectAll("*").remove();
 
         const defs = svg.append("defs");
@@ -390,23 +395,31 @@
                 .attr("rx", 18)
                 .attr("ry", 18);
 
-            zoneEnter.transition()
-                .duration(transitionDuration)
-                .style("opacity", 1);
-
+            // Update existing zones first
             zoneSelection.select("rect")
                 .transition()
                 .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .attr("x", d => d.x)
                 .attr("y", d => d.y)
                 .attr("width", d => d.width)
                 .attr("height", d => d.height);
 
-            zoneSelection.exit()
-                .transition()
-                .duration(transitionDuration / 2)
+            // Then fade in new zones
+            zoneEnter.transition()
+                .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
+                .style("opacity", 1);
+
+            // Remove old zones after transition completes, but keep them in place
+            const exitingZones = zoneSelection.exit();
+            exitingZones.transition()
+                .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .style("opacity", 0)
-                .remove();
+                .on("end", function() {
+                    d3.select(this).remove();
+                });
         }
 
         function updateRoutes(play) {
@@ -421,17 +434,22 @@
                     .style("opacity", 0)
                     .call(enterSelection => enterSelection.transition()
                         .duration(transitionDuration)
+                        .ease(d3.easeCubicInOut)
                         .style("opacity", 1)),
                 update => update
                     .attr("class", d => d.emphasis ? "chalk-line accent" : "chalk-line")
                     .attr("marker-end", "url(#chalk-arrow)")
                     .transition()
                     .duration(transitionDuration)
+                    .ease(d3.easeCubicInOut)
                     .attr("d", d => lineGenerator(d.points)),
                 exit => exit.transition()
-                    .duration(transitionDuration / 2)
+                    .duration(transitionDuration)
+                    .ease(d3.easeCubicInOut)
                     .style("opacity", 0)
-                    .remove()
+                    .on("end", function() {
+                        d3.select(this).remove();
+                    })
             );
         }
 
@@ -447,13 +465,16 @@
         }
 
         function updatePlayers(play) {
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
             const playerSelection = playersGroup.selectAll(".player-node")
                 .data(play.players, d => d.id);
 
             const playerEnter = playerSelection.enter()
                 .append("g")
                 .attr("class", d => computeNodeClass(d))
-                .attr("transform", d => `translate(${d.x}, ${d.y})`)
+                .attr("transform", `translate(${centerX}, ${centerY})`)
                 .style("opacity", 0);
 
             playerEnter.append("ellipse")
@@ -480,25 +501,38 @@
 
             playerEnter.transition()
                 .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .attr("transform", d => `translate(${d.x}, ${d.y})`)
                 .style("opacity", 1);
 
             playerSelection.transition()
                 .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .attr("class", d => computeNodeClass(d))
                 .attr("transform", d => `translate(${d.x}, ${d.y})`);
 
             playerSelection.select(".player-caption")
+                .transition()
+                .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .text(d => d.caption || "");
 
             playerSelection.select(".player-label")
+                .transition()
+                .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
                 .text(d => d.label);
 
-            playerSelection.exit()
-                .transition()
-                .duration(transitionDuration / 2)
+            // Keep exiting players in place until transition completes
+            const exitingPlayers = playerSelection.exit();
+            exitingPlayers.transition()
+                .duration(transitionDuration)
+                .ease(d3.easeCubicInOut)
+                .attr("transform", `translate(${centerX}, ${centerY})`)
                 .style("opacity", 0)
-                .remove();
+                .on("end", function() {
+                    d3.select(this).remove();
+                });
         }
 
         function renderPlay(playKey) {
@@ -507,6 +541,7 @@
                 return;
             }
 
+            // Update all elements simultaneously to prevent layout shifts
             updateZones(play);
             updateRoutes(play);
             updatePlayers(play);
