@@ -955,13 +955,14 @@
             padding: 2rem 1rem;
             border-top: 1px solid #ccc;
             border-bottom: 1px solid #ccc;
+            position: relative;
         }
 
+
         .playbook-illustration-svg {
-            max-width: 100%;
-            height: auto;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
+            height: auto;
             display: block;
             margin: 0 auto;
             background: #151515;
@@ -972,12 +973,43 @@
                         0 2px 8px rgba(0, 0, 0, 0.3),
                         inset 0 1px 2px rgba(255, 255, 255, 0.08);
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            position: relative;
+            z-index: 2;
         }
+
 
         .playbook-illustration-svg text {
             font-family: "Comic Sans MS", "Chalkduster", "Marker Felt", "Georgia", "Times New Roman", serif;
             text-rendering: optimizeLegibility;
             font-style: normal;
+        }
+
+        /* Chalkboard heading labels - Pre-NIL and Post-NIL */
+        .playbook-illustration-svg text.chalk-heading-label {
+            font-size: clamp(1.1rem, 1.4vw, 1.6rem) !important;
+            fill: #ffffff !important;
+            opacity: 0.95 !important;
+            font-weight: bold !important;
+            filter: url(#chalkText);
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Chalkboard label styling - larger and more readable */
+        .playbook-illustration-svg text.chalk-label {
+            font-size: clamp(0.9rem, 1.1vw, 1.25rem) !important;
+            fill: #f7f7f7 !important;
+            opacity: 0.95 !important;
+            filter: url(#chalkText);
+            cursor: pointer;
+            pointer-events: all;
+            transition: opacity 0.2s ease;
+        }
+        
+        /* Interactive label hover/focus styles */
+        .playbook-illustration-svg text.chalk-label:hover,
+        .playbook-illustration-svg text.chalk-label:focus {
+            opacity: 1 !important;
+            text-decoration: none;
         }
 
         .playbook-illustration-caption {
@@ -988,6 +1020,39 @@
             margin: 1.5rem 0 0;
             text-align: center;
             letter-spacing: 0.02em;
+        }
+
+        /* Disable route interactivity - routes are no longer interactive */
+        .play-route {
+            pointer-events: none;
+        }
+        
+        .play-route path {
+            pointer-events: none;
+        }
+
+        /* Floating popout tooltip styling */
+        .chalkboard-popout {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.85);
+            color: #f7f7f7;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            font-family: "Comic Sans MS", "Chalkduster", "Marker Felt", Georgia, serif;
+            font-size: 0.85rem;
+            max-width: 220px;
+            pointer-events: none;
+            white-space: normal;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            z-index: 1000;
+            transform: translate(-50%, -100%);
+            margin-top: -8px;
+        }
+        
+        .chalkboard-popout--visible {
+            opacity: 1;
         }
 
         .playbook-comparison {
@@ -1040,52 +1105,52 @@
             height: 100%;
         }
 
-        .pre-nil-column .playbook-article:nth-of-type(1) {
+        .pre-nil-card-1 {
             grid-row: 2;
             grid-column: 1;
         }
 
-        .pre-nil-column .playbook-divider:nth-of-type(1) {
+        .pre-nil-divider-1 {
             grid-row: 3;
             grid-column: 1;
         }
 
-        .pre-nil-column .playbook-article:nth-of-type(2) {
+        .pre-nil-card-2 {
             grid-row: 4;
             grid-column: 1;
         }
 
-        .pre-nil-column .playbook-divider:nth-of-type(2) {
+        .pre-nil-divider-2 {
             grid-row: 5;
             grid-column: 1;
         }
 
-        .pre-nil-column .playbook-article:nth-of-type(3) {
+        .pre-nil-card-3 {
             grid-row: 6;
             grid-column: 1;
         }
 
-        .post-nil-column .playbook-article:nth-of-type(1) {
+        .post-nil-card-1 {
             grid-row: 2;
             grid-column: 2;
         }
 
-        .post-nil-column .playbook-divider:nth-of-type(1) {
+        .post-nil-divider-1 {
             grid-row: 3;
             grid-column: 2;
         }
 
-        .post-nil-column .playbook-article:nth-of-type(2) {
+        .post-nil-card-2 {
             grid-row: 4;
             grid-column: 2;
         }
 
-        .post-nil-column .playbook-divider:nth-of-type(2) {
+        .post-nil-divider-2 {
             grid-row: 5;
             grid-column: 2;
         }
 
-        .post-nil-column .playbook-article:nth-of-type(3) {
+        .post-nil-card-3 {
             grid-row: 6;
             grid-column: 2;
         }
@@ -1148,55 +1213,229 @@
             width: 100%;
         }
 
-        .coaching-adjustments {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #999;
+        /* === Flip Card Styles === */
+        .playbook-card {
+            perspective: 1000px;
+            margin-bottom: 1rem;
         }
 
-        .adjustments-heading {
-            font-family: "Cinzel", "Times New Roman", serif;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-align: left;
-            margin-bottom: 1.5rem;
-            color: #2a2a2a;
+        .playbook-card-inner {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 180px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .playbook-card.flipped .playbook-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .playbook-card-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            background: #f7f3e9;
+            border: 1px solid #d0d0d0;
+            border-radius: 0;
+            padding: 1.5rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .playbook-card-back {
+            transform: rotateY(180deg);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .playbook-card-front {
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Newspaper-style headings inside cards */
+        .playbook-card-face .playbook-article-heading {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 1.1rem;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #2a2a2a;
+            border-bottom: 1px solid #ccc;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #999;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0;
         }
 
-        .adjustments-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-        }
-
-        .adjustment-brief {
-            background: #ffffff;
-            border: 1px solid #ddd;
-            padding: 1.25rem 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-
-        .adjustment-title {
-            font-family: "Cinzel", "Times New Roman", serif;
-            font-size: 0.95rem;
-            font-weight: 700;
+        .playbook-card-front .playbook-article-heading {
+            text-align: center;
             margin-bottom: 0.5rem;
-            color: #2a2a2a;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            line-height: 1.3;
         }
 
-        .adjustment-text {
+        .playbook-card-back .playbook-article-heading {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Post-NIL column headings keep their blue accent */
+        .post-nil-column .playbook-card-face .playbook-article-heading {
+            color: #2c5f8d;
+            border-bottom-color: #2c5f8d;
+        }
+
+        /* Body text and lists inside cards */
+        .playbook-card-face .playbook-list {
+            margin-top: 0.75rem;
+        }
+
+        .playbook-card-face .playbook-list li {
             font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
             font-size: 0.85rem;
             line-height: 1.5;
-            color: #555;
+            color: #444;
+            text-align: left;
+        }
+
+        /* Centered bullet lists on the back of cards */
+        .playbook-card-back .playbook-list {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .playbook-card-back .playbook-list li {
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: #444;
+            margin: 0.35rem 0;
+            text-align: center;
+            padding-left: 0;
+            text-indent: 0;
+        }
+
+        .playbook-card-back .playbook-list li::before {
+            content: none;
+        }
+
+        .playbook-card-hint {
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            font-size: 0.75rem;
+            color: #666;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            letter-spacing: 0.05em;
+            opacity: 0.85;
+        }
+
+        /* New Playbook: Coaching Adjustments - Newspaper Column Style */
+        .new-playbook-column {
+            margin: 3rem auto 0;
+            padding: 1.5rem 2rem;
+            background: #f7f3e9;
+            border: 1px solid #ddd;
+            border-top: 2px solid #999;
+        }
+
+
+        .new-playbook-kicker {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0.1em;
+            color: #777;
+            margin: -1rem 0 1.5rem 0;
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .new-playbook-item {
+            margin: 1.25rem 0;
+        }
+
+        .new-playbook-item h4 {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0 0 0.5rem 0;
+            color: #2a2a2a;
+            line-height: 1.3;
+        }
+
+        .new-playbook-item p {
+            font-family: "Old Standard TT", Georgia, "Times New Roman", serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
             margin: 0;
+            text-align: left;
+        }
+
+        .new-playbook-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+            row-gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Drop cap on all articles */
+        .new-playbook-item p::first-letter {
+            float: left;
+            font-size: 2.4rem;
+            line-height: 1;
+            padding-right: 0.25rem;
+            padding-top: 0.1rem;
+            font-family: "Georgia", "Times New Roman", serif;
+            font-weight: 600;
+            color: #2a2a2a;
+        }
+
+        /* Responsive styling for newspaper column */
+        @media (max-width: 899px) {
+            .new-playbook-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .new-playbook-column {
+                padding: 1.25rem 1.5rem;
+                margin: 3rem 1rem 0;
+            }
+
+            .new-playbook-kicker {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .new-playbook-column {
+                padding: 1rem 1.25rem;
+                margin: 3rem 0.75rem 0;
+            }
+
+            .new-playbook-item h4 {
+                font-size: 0.95rem;
+            }
+
+            .new-playbook-item p {
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 900px) {
@@ -1453,6 +1692,20 @@
                         <!-- Chalkboard background -->
                         <rect x="0" y="0" width="1000" height="500" fill="#151515" rx="12" ry="12"/>
                         
+                        <!-- Used chalkboard texture - erased chalk marks -->
+                        <g opacity="0.3" mix-blend-mode="screen">
+                            <!-- Circular eraser marks -->
+                            <ellipse cx="200" cy="120" rx="180" ry="100" fill="#ffffff" opacity="0.06"/>
+                            <ellipse cx="800" cy="150" rx="200" ry="110" fill="#ffffff" opacity="0.05"/>
+                            <ellipse cx="300" cy="380" rx="160" ry="90" fill="#ffffff" opacity="0.04"/>
+                            <ellipse cx="700" cy="360" rx="170" ry="95" fill="#ffffff" opacity="0.05"/>
+                            <ellipse cx="500" cy="250" rx="150" ry="85" fill="#ffffff" opacity="0.04"/>
+                            <!-- Horizontal eraser swipe marks -->
+                            <rect x="50" y="100" width="900" height="70" fill="#ffffff" opacity="0.03" rx="5"/>
+                            <rect x="100" y="320" width="800" height="55" fill="#ffffff" opacity="0.025" rx="5"/>
+                            <rect x="150" y="200" width="700" height="45" fill="#ffffff" opacity="0.02" rx="5"/>
+                        </g>
+                        
                         <!-- Chalkboard border -->
                         <rect x="4" y="4" width="992" height="492" fill="none" stroke="#e8e8e8" stroke-width="2.5" rx="12" ry="12" opacity="0.85" stroke-linecap="round"/>
                         
@@ -1464,14 +1717,16 @@
                             <circle cx="850" cy="430" r="1" fill="#f5f5f5"/>
                         </g>
                         
-                        <!-- Center divider line with label -->
+                        <!-- Center divider line -->
                         <line x1="500" y1="70" x2="500" y2="430" stroke="#e8e8e8" stroke-width="2.5" stroke-dasharray="8,6" opacity="0.5" stroke-linecap="round" filter="url(#chalkLine)"/>
-                        <text x="500" y="60" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="12" fill="#f8f8f8" text-anchor="middle" opacity="0.9" font-weight="normal" letter-spacing="0.15em" filter="url(#chalkText)">NIL Policy Change (2021)</text>
                         
+                        <!-- Play diagrams container - shifted left for centering and down for spacing -->
+                        <g transform="translate(-50, 35)">
                         <!-- LEFT SIDE: Pre-NIL Simple Play -->
                         <g class="pre-nil-side">
                             <!-- Top label -->
-                            <text x="250" y="60" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="14" fill="#f8f8f8" text-anchor="middle" opacity="0.95" font-weight="bold" letter-spacing="0.1em" filter="url(#chalkText)">Pre-NIL</text>
+                            <text x="280" y="60" class="chalk-heading-label" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="20" fill="#ffffff" text-anchor="middle" opacity="0.95" font-weight="bold" letter-spacing="0.1em" filter="url(#chalkText)">Pre-NIL</text>
+                            <line x1="210" y1="70" x2="350" y2="70" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-linecap="round" filter="url(#chalkLine)"/>
                             
                             <!-- Line of scrimmage -->
                             <line x1="80" y1="280" x2="420" y2="280" stroke="#e8e8e8" stroke-width="2.5" stroke-dasharray="4,4" opacity="0.6" filter="url(#chalkLine)"/>
@@ -1494,18 +1749,25 @@
                             <line x1="375" y1="180" x2="350" y2="205" stroke="#f8f8f8" stroke-width="3" filter="url(#chalkLine)"/>
                             
                             <!-- Route 1: Go route (Playing Time) - extended route curves toward label -->
-                            <path d="M 150 294 Q 150 240, 150 200 Q 160 140, 170 120" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="170" y="120" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="12" fill="#f8f8f8" opacity="0.92" transform="rotate(-2 170 120)" filter="url(#chalkText)">Playing Time</text>
+                            <g class="play-route route-playing-time" data-label="Pre-NIL transfer for playing time" tabindex="0" role="button" aria-label="Pre-NIL transfer for playing time">
+                                <path d="M 150 294 Q 150 240, 150 200 Q 160 140, 170 120" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 150 294 Q 150 240, 150 200 Q 160 140, 170 120" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="170" y="120" class="chalk-label" data-description="Pre-NIL transfers primarily driven by desire for more playing time." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="15" fill="#f7f7f7" opacity="0.95" transform="rotate(-2 170 120)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Playing Time - Pre-NIL transfers primarily driven by desire for more playing time.">Playing Time</text>
                             
                             <!-- Route 2: Slant route (Coaching Change) - extended route points toward label -->
-                            <path d="M 250 294 Q 270 240, 300 200 Q 320 160, 340 130" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="340" y="130" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="11.5" fill="#f8f8f8" opacity="0.92" transform="rotate(10 340 130)" filter="url(#chalkText)">Coaching Change</text>
+                            <g class="play-route route-coaching-change" data-label="Pre-NIL transfer for coaching change" tabindex="0" role="button" aria-label="Pre-NIL transfer for coaching change">
+                                <path d="M 250 294 Q 270 240, 300 200 Q 320 160, 340 130" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 250 294 Q 270 240, 300 200 Q 320 160, 340 130" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="340" y="130" class="chalk-label" data-description="Pre-NIL transfers often triggered by a new coach or system." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="15" fill="#f7f7f7" opacity="0.95" transform="rotate(10 340 130)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Coaching Change - Pre-NIL transfers often triggered by a new coach or system.">Coaching Change</text>
                         </g>
                         
                         <!-- RIGHT SIDE: Post-NIL Complex Play -->
                         <g class="post-nil-side">
                             <!-- Top label -->
-                            <text x="750" y="60" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="14" fill="#f8f8f8" text-anchor="middle" opacity="0.95" font-weight="bold" letter-spacing="0.1em" filter="url(#chalkText)">Post-NIL</text>
+                            <text x="750" y="60" class="chalk-heading-label" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="20" fill="#ffffff" text-anchor="middle" opacity="0.95" font-weight="bold" letter-spacing="0.1em" filter="url(#chalkText)">Post-NIL</text>
+                            <line x1="680" y1="70" x2="820" y2="70" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-linecap="round" filter="url(#chalkLine)"/>
                             
                             <!-- Line of scrimmage -->
                             <line x1="520" y1="280" x2="920" y2="280" stroke="#e8e8e8" stroke-width="2.5" stroke-dasharray="4,4" opacity="0.6" filter="url(#chalkLine)"/>
@@ -1533,23 +1795,37 @@
                             <line x1="885" y1="180" x2="860" y2="205" stroke="#f8f8f8" stroke-width="3" filter="url(#chalkLine)"/>
                             
                             <!-- Route 1: O at 580 → Collectives label (extended, crosses right, crosses other routes) -->
-                            <path d="M 580 294 Q 620 250, 680 210 Q 740 170, 800 140 Q 830 130, 850 120 Q 860 115, 870 110" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="870" y="110" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="11.5" fill="#f8f8f8" opacity="0.92" transform="rotate(-10 870 110)" filter="url(#chalkText)">Collectives</text>
+                            <g class="play-route route-collectives" data-label="Post-NIL transfer for collectives" tabindex="0" role="button" aria-label="Post-NIL transfer for collectives">
+                                <path d="M 580 294 Q 620 250, 680 210 Q 740 170, 800 140 Q 830 130, 850 120 Q 860 115, 870 110" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 580 294 Q 620 250, 680 210 Q 740 170, 800 140 Q 830 130, 850 120 Q 860 115, 870 110" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="870" y="110" class="chalk-label" data-description="NIL collectives create targeted packages to attract transfers." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="15" fill="#f7f7f7" opacity="0.95" transform="rotate(-10 870 110)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Collectives - NIL collectives create targeted packages to attract transfers.">Collectives</text>
                             
                             <!-- Route 2: O at 680 → NIL $$$ label (extended, crosses left, crosses Route 1) -->
-                            <path d="M 680 294 Q 660 250, 640 210 Q 630 170, 640 140 Q 645 130, 650 120" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="650" y="120" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="12" fill="#f8f8f8" opacity="0.92" transform="rotate(-5 650 120)" filter="url(#chalkText)">NIL $$$</text>
+                            <g class="play-route route-nil-money" data-label="Post-NIL transfer for NIL money" tabindex="0" role="button" aria-label="Post-NIL transfer for NIL money">
+                                <path d="M 680 294 Q 660 250, 640 210 Q 630 170, 640 140 Q 645 130, 650 120" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 680 294 Q 660 250, 640 210 Q 630 170, 640 140 Q 645 130, 650 120" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="650" y="120" class="chalk-label" data-description="Post-NIL transfers motivated by direct financial opportunities through NIL deals." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="15" fill="#f7f7f7" opacity="0.95" transform="rotate(-5 650 120)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="NIL $$$ - Post-NIL transfers motivated by direct financial opportunities through NIL deals.">NIL $$$</text>
                             
                             <!-- Route 3: O at 780 → Marketplace Opportunities label (extended, crosses right, crosses Routes 1 and 2) -->
-                            <path d="M 780 294 Q 800 250, 840 210 Q 870 180, 900 170 Q 910 165, 915 150" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="915" y="150" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="10" fill="#f8f8f8" opacity="0.92" transform="rotate(3 915 150)" filter="url(#chalkText)">Marketplace</text>
-                            <text x="915" y="165" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="10" fill="#f8f8f8" opacity="0.92" transform="rotate(3 915 165)" filter="url(#chalkText)">Opportunities</text>
+                            <g class="play-route route-marketplace" data-label="Post-NIL transfer for marketplace opportunities" tabindex="0" role="button" aria-label="Post-NIL transfer for marketplace opportunities">
+                                <path d="M 780 294 Q 800 250, 840 210 Q 870 180, 900 170 Q 910 165, 915 150" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 780 294 Q 800 250, 840 210 Q 870 180, 900 170 Q 910 165, 915 150" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="915" y="150" class="chalk-label" data-description="Athletes move where NIL marketplaces and local sponsors offer more deals." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="14" fill="#f7f7f7" opacity="0.95" transform="rotate(3 915 150)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Marketplace Opportunities - Athletes move where NIL marketplaces and local sponsors offer more deals.">Marketplace</text>
+                            <text x="915" y="168" class="chalk-label" data-description="Athletes move where NIL marketplaces and local sponsors offer more deals." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="14" fill="#f7f7f7" opacity="0.95" transform="rotate(3 915 168)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Marketplace Opportunities - Athletes move where NIL marketplaces and local sponsors offer more deals.">Opportunities</text>
                             
                             <!-- Route 4: O at 860 → Brand Exposure label (extended, crosses left, crosses Routes 1, 2, and 3) -->
-                            <path d="M 860 294 Q 840 250, 800 210 Q 760 170, 740 140 Q 750 125, 760 110" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
-                            <text x="760" y="110" font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="11.5" fill="#f8f8f8" opacity="0.92" transform="rotate(15 760 110)" filter="url(#chalkText)">Brand Exposure</text>
+                            <g class="play-route route-brand-exposure" data-label="Post-NIL transfer for brand exposure" tabindex="0" role="button" aria-label="Post-NIL transfer for brand exposure">
+                                <path d="M 860 294 Q 840 250, 800 210 Q 760 170, 740 140 Q 750 125, 760 110" stroke="transparent" stroke-width="12" fill="none" pointer-events="all"/>
+                                <path d="M 860 294 Q 840 250, 800 210 Q 760 170, 740 140 Q 750 125, 760 110" stroke="#f8f8f8" stroke-width="3" fill="none" marker-end="url(#routeArrow)" filter="url(#chalkLine)"/>
+                            </g>
+                            <text x="760" y="110" class="chalk-label" data-description="Players move to programs with greater media visibility to grow their personal brand." font-family="Comic Sans MS, Chalkduster, Marker Felt, Georgia, serif" font-size="15" fill="#f7f7f7" opacity="0.95" transform="rotate(15 760 110)" filter="url(#chalkText)" tabindex="0" role="button" aria-label="Brand Exposure - Players move to programs with greater media visibility to grow their personal brand.">Brand Exposure</text>
+                        </g>
                         </g>
                     </svg>
+                    <div class="chalkboard-popout" aria-live="polite"></div>
                     <p class="playbook-illustration-caption">Figure: Pre-NIL transfers followed simple, role-based routes, while NIL introduced complex, money and exposure-driven paths through the "playbook."</p>
                 </div>
                 
@@ -1559,113 +1835,148 @@
                     <div class="playbook-column pre-nil-column">
                         <h3 class="playbook-column-heading">Pre-NIL Era</h3>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Motivations</h4>
-                            <p class="playbook-article-text">
-                                The primary drivers in the traditional system focused on fundamental athletic concerns. Playing time remained the central motivation, with athletes seeking opportunities to showcase their abilities. Coach and system fit also played crucial roles, as athletes looked for environments that matched their playing style and development needs.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>Playing time</li>
-                                <li>Coach/system fit</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card pre-nil-card-1">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Motivations</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Motivations</h4>
+                                    <ul class="playbook-list">
+                                        <li>Playing time</li>
+                                        <li>Coach/system fit</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                         
-                        <div class="playbook-divider"></div>
+                        <div class="playbook-divider pre-nil-divider-1"></div>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Transfer Patterns</h4>
-                            <p class="playbook-article-text">
-                                Transfer activity was relatively limited during this period. The system saw few transfers overall, with most movement occurring among juniors and seniors who had completed significant portions of their eligibility. Mobility windows were constrained, creating predictable transfer cycles.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>Few transfers overall</li>
-                                <li>Mostly juniors and seniors</li>
-                                <li>Limited mobility windows</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card pre-nil-card-2">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Transfer Patterns</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Transfer Patterns</h4>
+                                    <ul class="playbook-list">
+                                        <li>Few transfers overall</li>
+                                        <li>Mostly juniors and seniors</li>
+                                        <li>Limited mobility windows</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                         
-                        <div class="playbook-divider"></div>
+                        <div class="playbook-divider pre-nil-divider-2"></div>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Outcomes</h4>
-                            <p class="playbook-article-text">
-                                The traditional system produced relatively stable rosters with predictable cycles. Movement occurred slowly, allowing programs to maintain continuity and build long-term relationships with athletes. This stability created a foundation for program development and team cohesion.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>Roster stability</li>
-                                <li>Predictable cycles</li>
-                                <li>Slow movement</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card pre-nil-card-3">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Outcomes</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Outcomes</h4>
+                                    <ul class="playbook-list">
+                                        <li>Roster stability</li>
+                                        <li>Predictable cycles</li>
+                                        <li>Slow movement</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- Right Column: Post-NIL -->
                     <div class="playbook-column post-nil-column">
                         <h3 class="playbook-column-heading">Post-NIL Era</h3>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Motivations</h4>
-                            <p class="playbook-article-text">
-                                The landscape shifted dramatically with the introduction of Name, Image, and Likeness policies. NIL incentives and collectives now drive many transfer decisions, creating new financial opportunities for athletes. Branding and exposure have become central concerns, as athletes seek platforms to build their personal brands.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>NIL incentives and collectives</li>
-                                <li>Branding and exposure</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card post-nil-card-1">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Motivations</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Motivations</h4>
+                                    <ul class="playbook-list">
+                                        <li>NIL incentives and collectives</li>
+                                        <li>Branding and exposure</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                         
-                        <div class="playbook-divider"></div>
+                        <div class="playbook-divider post-nil-divider-1"></div>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Transfer Patterns</h4>
-                            <p class="playbook-article-text">
-                                Transfer activity has accelerated significantly in the new era. Rapid mobility characterizes the current system, with freshmen and sophomores now transferring at unprecedented rates. Many athletes now pursue multiple transfers across their careers, seeking optimal opportunities for both athletic and financial growth.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>Rapid mobility</li>
-                                <li>Freshmen and sophomores transferring</li>
-                                <li>Multiple transfers across careers</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card post-nil-card-2">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Transfer Patterns</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Transfer Patterns</h4>
+                                    <ul class="playbook-list">
+                                        <li>Rapid mobility</li>
+                                        <li>Freshmen and sophomores transferring</li>
+                                        <li>Multiple transfers across careers</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                         
-                        <div class="playbook-divider"></div>
+                        <div class="playbook-divider post-nil-divider-2"></div>
                         
-                        <article class="playbook-article">
-                            <h4 class="playbook-article-heading">Outcomes</h4>
-                            <p class="playbook-article-text">
-                                The new system has produced high roster churn as NIL-driven decisions reshape program dynamics. Decision timelines have accelerated, forcing athletic departments to adapt quickly to changing rosters. This environment demands greater flexibility and proactive management strategies.
-                            </p>
-                            <ul class="playbook-list">
-                                <li>High roster churn</li>
-                                <li>NIL-driven decisions</li>
-                                <li>Faster decision timelines</li>
-                            </ul>
-                        </article>
+                        <div class="playbook-card post-nil-card-3">
+                            <button class="playbook-card-inner" type="button">
+                                <div class="playbook-card-face playbook-card-front">
+                                    <h4 class="playbook-article-heading">Outcomes</h4>
+                                    <p class="playbook-card-hint">Click to reveal details</p>
+                                </div>
+                                <div class="playbook-card-face playbook-card-back">
+                                    <h4 class="playbook-article-heading">Outcomes</h4>
+                                    <ul class="playbook-list">
+                                        <li>High roster churn</li>
+                                        <li>NIL-driven decisions</li>
+                                        <li>Faster decision timelines</li>
+                                    </ul>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Coaching Adjustments Section -->
-                <div class="coaching-adjustments">
-                    <h3 class="adjustments-heading">New Playbook: Coaching Adjustments</h3>
-                    <div class="adjustments-grid">
-                        <div class="adjustment-brief">
-                            <h4 class="adjustment-title">Build NIL Infrastructure</h4>
-                            <p class="adjustment-text">Develop collectives, educate athletes, and provide transparent NIL support.</p>
-                        </div>
-                        <div class="adjustment-brief">
-                            <h4 class="adjustment-title">Early Communication</h4>
-                            <p class="adjustment-text">Clarify role, development plan, and expectations before dissatisfaction grows.</p>
-                        </div>
-                        <div class="adjustment-brief">
-                            <h4 class="adjustment-title">Brand-Building Support</h4>
-                            <p class="adjustment-text">Offer media training, social strategy, and tools for personal branding.</p>
-                        </div>
-                        <div class="adjustment-brief">
-                            <h4 class="adjustment-title">Roster Flexibility</h4>
-                            <p class="adjustment-text">Plan for mid-year exits and arrivals; manage rosters dynamically.</p>
-                        </div>
+                <section class="new-playbook-column">
+                    <h2>Sideline Analysis</h2>
+                    <p class="new-playbook-kicker">Coaching adjustments in the transfer and NIL era</p>
+
+                    <div class="new-playbook-items">
+                        <article class="new-playbook-item">
+                            <h4>Build NIL Infrastructure</h4>
+                            <p>Develop collectives, educate athletes, and provide transparent NIL support so players don't feel they need to leave to find financial footing elsewhere.</p>
+                        </article>
+
+                        <article class="new-playbook-item">
+                            <h4>Early Communication</h4>
+                            <p>Clarify role, development plan, and expectations early, before dissatisfaction builds into a transfer decision.</p>
+                        </article>
+
+                        <article class="new-playbook-item">
+                            <h4>Brand-Building Support</h4>
+                            <p>Offer media training, social strategy, and tools for personal branding so players can grow their profiles without needing to jump programs.</p>
+                        </article>
+
+                        <article class="new-playbook-item">
+                            <h4>Roster Flexibility</h4>
+                            <p>Plan for mid-year exits and arrivals, using flexible scholarships and depth charts that assume higher transfer churn in the NIL era.</p>
+                        </article>
                     </div>
-                </div>
+                </section>
             </section>
     </main>
 
@@ -1680,6 +1991,77 @@
     <script src="js/rising_insights.js"></script>
     <script src="js/stoplight.js"></script>
     <script src="js/whiteboard.js"></script>
+    
+    <!-- Flip Card Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.playbook-card');
+            cards.forEach(card => {
+                const inner = card.querySelector('.playbook-card-inner');
+                if (inner) {
+                    inner.addEventListener('click', () => {
+                        card.classList.toggle('flipped');
+                    });
+                    
+                    inner.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            card.classList.toggle('flipped');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Chalkboard Label Popout Tooltip Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wait a bit to ensure SVG is fully loaded
+            setTimeout(function() {
+                const board = document.querySelector('.playbook-illustration');
+                const popout = board ? board.querySelector('.chalkboard-popout') : null;
+                const labels = board ? board.querySelectorAll('.chalk-label[data-description]') : [];
+                
+                if (!board || !popout || !labels.length) {
+                    return;
+                }
+                
+                labels.forEach(label => {
+                    const desc = label.getAttribute('data-description') || '';
+                    
+                    if (!desc) {
+                        return;
+                    }
+                    
+                    const show = () => {
+                        const labelRect = label.getBoundingClientRect();
+                        const boardRect = board.getBoundingClientRect();
+                        
+                        // Calculate center X of label relative to board
+                        const centerX = labelRect.left - boardRect.left + labelRect.width / 2;
+                        // Position tooltip above label
+                        const topY = labelRect.top - boardRect.top;
+                        
+                        popout.style.left = `${centerX}px`;
+                        popout.style.top = `${topY}px`;
+                        popout.textContent = desc;
+                        popout.classList.add('chalkboard-popout--visible');
+                    };
+                    
+                    const hide = () => {
+                        popout.classList.remove('chalkboard-popout--visible');
+                        popout.textContent = '';
+                    };
+                    
+                    label.addEventListener('mouseenter', show);
+                    label.addEventListener('mouseleave', hide);
+                    label.addEventListener('focus', show);
+                    label.addEventListener('blur', hide);
+                });
+            }, 200);
+        });
+    </script>
 </body>
 
 </html>
