@@ -4,7 +4,7 @@
  */
 
 // D3 Margin Convention
-const margin = { top: 30, right: 30, bottom: 50, left: 60 };
+const margin = { top: 30, right: 30, bottom: 70, left: 60 };
 const width = 400 - margin.left - margin.right;
 const height = 300 - margin.top - margin.bottom;
 
@@ -170,7 +170,7 @@ function renderCFPTimeline(rawData) {
     svg.append("text")
         .attr("class", "axis-label")
         .attr("x", width / 2)
-        .attr("y", height + 50)
+        .attr("y", height + 60)
         .attr("text-anchor", "middle")
         .text("Month");
 }
@@ -389,7 +389,7 @@ function renderNCAATimeline(rawData, isAllSports = true) {
     svg.append("text")
         .attr("class", "axis-label")
         .attr("x", width / 2)
-        .attr("y", height + 50)
+        .attr("y", height + 60)
         .attr("text-anchor", "middle")
         .text("Year");
 
