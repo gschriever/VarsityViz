@@ -1,0 +1,318 @@
+[1mdiff --git a/js/main.js b/js/main.js[m
+[1mindex 71a542d..52bbc64 100644[m
+[1m--- a/js/main.js[m
+[1m+++ b/js/main.js[m
+[36m@@ -4,17 +4,13 @@[m
+  */[m
+ [m
+ // D3 Margin Convention[m
+[31m-const margin = { top: 30, right: 30, bottom: 50, left: 60 };[m
+[32m+[m[32mconst margin = { top: 30, right: 30, bottom: 70, left: 60 };[m
+ const width = 400 - margin.left - margin.right;[m
+ const height = 300 - margin.top - margin.bottom;[m
+ [m
+ // NIL Policy date[m
+ const nilPolicyDate = new Date('2021-07-01');[m
+ const nilPolicyYear = nilPolicyDate.getFullYear();[m
+[31m-const parseMonthYear = d3.timeParse("%Y-%m");[m
+[31m-const formatMonthYear = d3.timeFormat("%B %Y");[m
+[31m-const formatComma = d3.format(",");[m
+[31m-const formatPercent = d3.format("+.1%");[m
+ [m
+ // Color scheme[m
+ const colors = {[m
+[36m@@ -31,7 +27,7 @@[m [mfunction renderCFPTimeline(rawData) {[m
+         .map(d => ({[m
+             month: d3.timeParse("%Y-%m")(d.month),[m
+             transfer_count: +d.transfer_count,[m
+[31m-            post_nil: d.post_nil === 'true' || d.post_nil === 'True' || d.post_nil === true[m
+[32m+[m[32m            post_nil: d.post_nil === 'true'[m
+         }))[m
+         .filter(d => d.month && !Number.isNaN(d.transfer_count))[m
+         .sort((a, b) => a.month - b.month);[m
+[36m@@ -51,8 +47,6 @@[m [mfunction renderCFPTimeline(rawData) {[m
+         .append("svg")[m
+         .attr("width", width + margin.left + margin.right)[m
+         .attr("height", height + margin.top + margin.bottom)[m
+[31m-        .style("display", "block")[m
+[31m-        .style("margin", "0 auto")[m
+         .append("g")[m
+         .attr("transform", `translate(${margin.left},${margin.top})`);[m
+ [m
+[36m@@ -96,27 +90,52 @@[m [mfunction renderCFPTimeline(rawData) {[m
+     // Create areas for pre and post NIL[m
+     const preNilData = data.filter(d => !d.post_nil);[m
+     const postNilData = data.filter(d => d.post_nil);[m
+[31m-    [m
+[31m-    // Create one continuous area fill across the entire dataset[m
+[31m-    const areaContinuous = d3.area()[m
+[31m-        .x(d => xScale(d.month))[m
+[31m-        .y0(height)[m
+[31m-        .y1(d => yScale(d.transfer_count))[m
+[31m-        .curve(d3.curveMonotoneX);[m
+[31m-    [m
+[31m-    svg.append("path")[m
+[31m-        .datum(data)[m
+[31m-        .attr("fill", colors.preNil)[m
+[31m-        .attr("fill-opacity", 0.3)[m
+[31m-        .attr("d", areaContinuous);[m
+[31m-    [m
+[31m-    svg.append("path")[m
+[31m-        .datum(data)[m
+[31m-        .attr("class", "line continuous-line")[m
+[31m-        .attr("d", line)[m
+[31m-        .style("stroke", colors.preNil)[m
+[31m-        .style("stroke-width", 2)[m
+[31m-        .style("fill", "none");[m
+[32m+[m
+[32m+[m[32m    // Pre-NIL area[m
+[32m+[m[32m    if (preNilData.length > 0) {[m
+[32m+[m[32m        const areaPre = d3.area()[m
+[32m+[m[32m            .x(d => xScale(d.month))[m
+[32m+[m[32m            .y0(height)[m
+[32m+[m[32m            .y1(d => yScale(d.transfer_count))[m
+[32m+[m[32m            .curve(d3.curveMonotoneX);[m
+[32m+[m
+[32m+[m[32m        svg.append("path")[m
+[32m+[m[32m            .datum(preNilData)[m
+[32m+[m[32m            .attr("fill", colors.preNil)[m
+[32m+[m[32m            .attr("fill-opacity", 0.3)[m
+[32m+[m[32m            .attr("d", areaPre);[m
+[32m+[m
+[32m+[m[32m        svg.append("path")[m
+[32m+[m[32m            .datum(preNilData)[m
+[32m+[m[32m            .attr("class", "line pre-nil-line")[m
+[32m+[m[32m            .attr("d", line)[m
+[32m+[m[32m            .style("stroke", colors.preNil)[m
+[32m+[m[32m            .style("stroke-width", 2)[m
+[32m+[m[32m            .style("fill", "none");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    // Post-NIL area[m
+[32m+[m[32m    if (postNilData.length > 0) {[m
+[32m+[m[32m        const areaPost = d3.area()[m
+[32m+[m[32m            .x(d => xScale(d.month))[m
+[32m+[m[32m            .y0(height)[m
+[32m+[m[32m            .y1(d => yScale(d.transfer_count))[m
+[32m+[m[32m            .curve(d3.curveMonotoneX);[m
+[32m+[m
+[32m+[m[32m        svg.append("path")[m
+[32m+[m[32m            .datum(postNilData)[m
+[32m+[m[32m            .attr("fill", colors.postNil)[m
+[32m+[m[32m            .attr("fill-opacity", 0.3)[m
+[32m+[m[32m            .attr("d", areaPost);[m
+[32m+[m
+[32m+[m[32m        svg.append("path")[m
+[32m+[m[32m            .datum(postNilData)[m
+[32m+[m[32m            .attr("class", "line post-nil-line")[m
+[32m+[m[32m            .attr("d", line)[m
+[32m+[m[32m            .style("stroke", colors.postNil)[m
+[32m+[m[32m            .style("stroke-width", 2)[m
+[32m+[m[32m            .style("fill", "none");[m
+[32m+[m[32m    }[m
+ [m
+     // Add x-axis[m
+     const xAxis = d3.axisBottom(xScale)[m
+[36m@@ -133,9 +152,8 @@[m [mfunction renderCFPTimeline(rawData) {[m
+         .attr("transform", "rotate(-45)");[m
+ [m
+     // Add y-axis[m
+[31m-    const yAxis = d3.axisLeft(yScale)[m
+[31m-        .ticks(5);[m
+[31m-    [m
+[32m+[m[32m    const yAxis = d3.axisLeft(yScale);[m
+[32m+[m
+     svg.append("g")[m
+         .attr("class", "axis y-axis")[m
+         .call(yAxis);[m
+[36m@@ -152,245 +170,9 @@[m [mfunction renderCFPTimeline(rawData) {[m
+     svg.append("text")[m
+         .attr("class", "axis-label")[m
+         .attr("x", width / 2)[m
+[31m-        .attr("y", height + 50)[m
+[32m+[m[32m        .attr("y", height + 60)[m
+         .attr("text-anchor", "middle")[m
+         .text("Month");[m
+[31m-    [m
+[31m-    // Calculate interesting statistics for tooltips[m
+[31m-    const totalTransfers = d3.sum(data, d => d.transfer_count);[m
+[31m-    const preNilTotal = d3.sum(preNilData, d => d.transfer_count);[m
+[31m-    const postNilTotal = d3.sum(postNilData, d => d.transfer_count);[m
+[31m-    const preNilAvg = preNilData.length > 0 ? preNilTotal / preNilData.length : 0;[m
+[31m-    const postNilAvg = postNilData.length > 0 ? postNilTotal / postNilData.length : 0;[m
+[31m-    const maxTransferMonth = data.reduce((max, d) => d.transfer_count > max.transfer_count ? d : max, data[0]);[m
+[31m-    const minTransferMonth = data.reduce((min, d) => d.transfer_count < min.transfer_count ? d : min, data[0]);[m
+[31m-    [m
+[31m-    // Create tooltip[m
+[31m-    let tooltip = d3.select("body").select(".cfp-chart-tooltip");[m
+[31m-    if (tooltip.empty()) {[m
+[31m-        tooltip = d3.select("body").append("div")[m
+[31m-            .attr("class", "cfp-chart-tooltip")[m
+[31m-            .style("position", "absolute")[m
+[31m-            .style("background", "rgba(0, 0, 0, 0.9)")[m
+[31m-            .style("color", "white")[m
+[31m-            .style("padding", "12px 16px")[m
+[31m-            .style("border-radius", "8px")[m
+[31m-            .style("font-size", "0.85rem")[m
+[31m-            .style("line-height", "1.6")[m
+[31m-            .style("pointer-events", "none")[m
+[31m-            .style("opacity", "0")[m
+[31m-            .style("transition", "opacity 0.2s")[m
+[31m-            .style("z-index", "1000")[m
+[31m-            .style("box-shadow", "0 4px 12px rgba(0, 0, 0, 0.3)")[m
+[31m-            .style("max-width", "320px");[m
+[31m-    }[m
+[31m-    [m
+[31m-    // Add invisible hover points (larger radius for easier interaction)[m
+[31m-    svg.selectAll(".cfp-hover-point")[m
+[31m-        .data(data)[m
+[31m-        .enter()[m
+[31m-        .append("circle")[m
+[31m-        .attr("class", "cfp-hover-point")[m
+[31m-        .attr("cx", d => xScale(d.month))[m
+[31m-        .attr("cy", d => yScale(d.transfer_count))[m
+[31m-        .attr("r", 12)[m
+[31m-        .style("fill", "transparent")[m
+[31m-        .style("cursor", "pointer")[m
+[31m-        .on("mouseover", function(event, d) {[m
+[31m-            // Don't change the appearance of the hover point - keep it invisible[m
+[31m-            [m
+[31m-            // Calculate month-specific stats[m
+[31m-            const monthIndex = data.indexOf(d);[m
+[31m-            const prevMonth = monthIndex > 0 ? data[monthIndex - 1] : null;[m
+[31m-            const changeFromPrev = prevMonth ? d.transfer_count - prevMonth.transfer_count : 0;[m
+[31m-            const pctChangeFromPrev = prevMonth && prevMonth.transfer_count > 0 ? [m
+[31m-                ((d.transfer_count - prevMonth.transfer_count) / prevMonth.transfer_count * 100) : 0;[m
+[31m-            [m
+[31m-            // Determine if this is a peak or low[m
+[31m-            const isPeak = d.month.getTime() === maxTransferMonth.month.getTime();[m
+[31m-            const isLow = d.month.getTime() === minTransferMonth.month.getTime();[m
+[31m-            [m
+[31m-            // Calculate percentile[m
+[31m-            const sortedCounts = data.map(d => d.transfer_count).sort((a, b) => a - b);[m
+[31m-            const percentile = (sortedCounts.indexOf(d.transfer_count) / sortedCounts.length * 100).toFixed(0);[m
+[31m-            [m
+[31m-            // Determine trend[m
+[31m-            let trend = "";[m
+[31m-            if (changeFromPrev > 0) {[m
+[31m-                trend = `<span style="color:#5cb85c;">↑ +${formatComma(changeFromPrev)}</span> (${pctChangeFromPrev > 0 ? '+' : ''}${pctChangeFromPrev.toFixed(1)}%)`;[m
+[31m-            } else if (changeFromPrev < 0) {[m
+[31m-                trend = `<span style="color:#d9534f;">↓ ${formatComma(changeFromPrev)}</span> (${pctChangeFromPrev.toFixed(1)}%)`;[m
+[31m-            } else {[m
+[31m-                trend = `<span style="color:#999;">→ No change</span>`;[m
+[31m-            }[m
+[31m-            [m
+[31m-            // Build tooltip content with interesting stats[m
+[31m-            let tooltipHTML = `[m
+[31m-                <div style="font-weight:700; font-size:0.95rem; color:#f7d7a3; margin-bottom:8px;">[m
+[31m-                    ${formatMonthYear(d.month)}[m
+[31m-                </div>[m
+[31m-                <div style="margin-bottom:6px;">[m
+[31m-                    <strong style="color:#ffc107;">${formatComma(d.transfer_count)} transfers</strong>[m
+[31m-                </div>[m
+[31m-                <div style="font-size:0.8rem; color:#ccc; margin-bottom:8px;">[m
+[31m-                    ${d.post_nil ? [m
+[31m-                        `<span style="background:rgba(217,83,79,0.2); padding:2px 8px; border-radius:12px; color:#d9534f; border:1px solid rgba(217,83,79,0.4);">Post-NIL</span>` : [m
+[31m-                        `<span style="background:rgba(92,184,92,0.2); padding:2px 8px; border-radius:12px; color:#5cb85c; border:1px solid rgba(92,184,92,0.4);">Pre-NIL</span>`[m
+[31m-                    }[m
+[31m-                </div>[m
+[31m-            `;[m
+[31m-            [m
+[31m-            if (prevMonth) {[m
+[31m-                tooltipHTML += `[m
+[31m-                    <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:6px; margin-bottom:6px;">[m
+[31m-                        <div style="font-size:0.8rem; color:#999;">Change from prev month:</div>[m
+[31m-                        <div style="font-weight:600;">${trend}</div>[m
+[31m-                    </div>[m
+[31m-                `;[m
+[31m-            }[m
+[31m-            [m
+[31m-            tooltipHTML += `[m
+[31m-                <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:6px; font-size:0.8rem;">[m
+[31m-                    <div style="color:#999;">Era average: <strong style="color:white;">${formatComma(Math.round(d.post_nil ? postNilAvg : preNilAvg))}/month</strong></div>[m
+[31m-                    <div style="color:#999;">Percentile: <strong style="color:white;">${percentile}th</strong></div>[m
+[31m-                </div>[m
+[31m-            `;[m
+[31m-            [m
+[31m-            if (isPeak) {[m
+[31m-                tooltipHTML += `[m
+[31m-                    <div style="margin-top:8px; background:rgba(255,193,7,0.2); border:1px solid rgba(255,193,7,0.4); padding:6px 8px; border-radius:4px; font-size:0.8rem;">[m
+[31m-                        <strong style="color:#ffc107;">📈 Peak Month!</strong><br/>[m
+[31m-                        Highest transfer volume in the entire dataset[m
+[31m-                    </div>[m
+[31m-                `;[m
+[31m-            }[m
+[31m-            [m
+[31m-            if (isLow) {[m
+[31m-                tooltipHTML += `[m
+[31m-                    <div style="margin-top:8px; background:rgba(108,117,125,0.2); border:1px solid rgba(108,117,125,0.4); padding:6px 8px; border-radius:4px; font-size:0.8rem;">[m
+[31m-                        <strong style="color:#6c757d;">📉 Lowest Month</strong><br/>[m
+[31m-                        Minimum transfer activity[m
+[31m-                    </div>[m
+[31m-                `;[m
+[31m-            }[m
+[31m-            [m
+[31m-            // Add contextual insights note[m
+[31m-            let insightNote = "";[m
+[31m-            [m
+[31m-            if (isPeak) {[m
+[31m-                const totalIncrease = ((postNilAvg / preNilAvg - 1) * 100).toFixed(0);[m
+[31m-                insightNote = `The NIL policy caused a ${totalIncrease}% spike in average monthly transfers. This peak represents ${(d.transfer_count / totalTransfers * 100).toFixed(1)}% of all ${totalTransfers.toLocaleString()} transfers in the dataset.`;[m
+[31m-            } else if (isLow) {[m
+[31m-                insightNote = `This represents the quietest transfer period. For comparison, the busiest month (${formatMonthYear(maxTransferMonth.month)}) had ${formatComma(maxTransferMonth.transfer_count)} transfers—${Math.round(maxTransferMonth.transfer_count / d.transfer_count)}x more activity.`;[m
+[31m-            } else if (d.post_nil && monthIndex > 0 && !prevMonth.post_nil) {[m
+[31m-                // First month after NIL[m
+[31m-                insightNote = `This is the first full month after NIL policy took effect (July 2021). Transfer activity ${changeFromPrev > 0 ? 'jumped' : 'shifted'}, marking the beginning of a new era in college athletics.`;[m
+[31m-            } else if (d.post_nil) {[m
+[31m-                // Post-NIL months - More varied and personalized insights[m
+[31m-                const increaseVsPreNil = ((postNilAvg / preNilAvg - 1) * 100).toFixed(0);[m
+[31m-                const monthName = d.month.toLocaleString('default', { month: 'long' });[m
+[31m-                const year = d.month.getFullYear();[m
+[31m-                const monthNum = d.month.getMonth() + 1; // 1-12[m
+[31m-                const monthsSinceNIL = Math.round((d.month - nilPolicyDate) / (1000 * 60 * 60 * 24 * 30));[m
+[31m-                [m
+[31m-                // Determine academic period[m
+[31m-                const isFallSemester = monthNum >= 9 && monthNum <= 12; // Sep-Dec[m
+[31m-                const isSpringSemester = monthNum >= 2 && monthNum <= 5; // Feb-May[m
+[31m-                const isSummerBreak = monthNum >= 6 && monthNum <= 8; // Jun-Aug[m
+[31m-                const isWinterBreak = monthNum === 1; // January[m
+[31m-                [m
+[31m-                // Get position in post-NIL data[m
+[31m-                const postNilIndex = postNilData.findIndex(item => item.month.getTime() === d.month.getTime());[m
+[31m-                const totalPostNilMonths = postNilData.length;[m
+[31m-                [m
+[31m-                // Vary insights based on different factors[m
+[31m-                if (d.transfer_count > postNilAvg * 1.3) {[m
+[31m-                    // Very high month[m
+[31m-                    const reasons = [[m
+[31m-                        `Exceptional activity! At ${formatComma(d.transfer_count)} transfers, this ranks in the top tier of post-NIL months. Athletes are actively leveraging NIL opportunities and the transfer portal to maximize their career prospects.`,[m
+[31m-                        `This month saw a surge of ${formatComma(d.transfer_count)} transfers—${((d.transfer_count / postNilAvg - 1) * 100).toFixed(0)}% above average! Such spikes often align with coaching changes, end of seasons, or major NIL deal announcements at top programs.`,[m
+[31m-                        `Peak transfer season! With ${formatComma(d.transfer_count)} moves, this reflects the new reality where athletes treat transfers as strategic career decisions, not last resorts. This is ${((d.transfer_count / preNilAvg) * 100 - 100).toFixed(0)}% higher than the entire pre-NIL average!`[m
+[31m-                    ];[m
+[31m-                    insightNote = reasons[Math.abs(d.month.getMonth() + year) % reasons.length];[m
+[31m-                } else if (d.transfer_count > postNilAvg * 1.1) {[m
+[31m-                    // Above average month[m
+[31m-                    const reasons = [[m
+[31m-                        `Solid month with ${formatComma(d.transfer_count)} transfers. The ${monthsSinceNIL}-month post-NIL period shows sustained elevated transfer activity, with athletes increasingly comfortable using the portal to find better fits.`,[m
+[31m-                        `This ${monthName} marked ${formatComma(d.transfer_count)} transfers—a healthy ${((d.transfer_count / postNilAvg - 1) * 100).toFixed(0)}% above post-NIL average. Coaches now budget for annual roster turnover as part of recruiting strategy.`,[m
+[31m-                        `Above-average activity at ${formatComma(d.transfer_count)} transfers. Transfer portal entries have become predictable cycles tied to academic calendars, spring games, and NIL collective fundraising deadlines.`[m
+[31m-                    ];[m
+[31m-                    insightNote = reasons[postNilIndex % reasons.length];[m
+[31m-                } else if (d.transfer_count < postNilAvg * 0.8) {[m
+[31m-                    // Below average month - context-aware based on season[m
+[31m-                    if (isFallSemester) {[m
+[31m-                        insightNote = `Quieter fall semester month with ${formatComma(d.transfer_count)} transfers. Athletes are focused on games and academics mid-season, but that's still ${d.transfer_count > preNilAvg ? ((d.transfer_count / preNilAvg - 1) * 100).toFixed(0) + '% higher than' : 'comparable to'} pre-NIL averages. The "slow" months post-NIL would have been peaks before 2021!`;[m
+[31m-                    } else if (isSpringSemester) {[m
+[31m-                        insightNote = `Lower spring semester activity at ${formatComma(d.transfer_count)} transfers—likely mid-semester when athletes balance spring practice with finals preparation. Yet even quiet post-NIL months reflect the portal's permanent presence in college athletics.`;[m
+[31m-                    } else if (isSummerBreak) {[m
+[31m-                        insightNote = `Summer lull with ${formatComma(d.transfer_count)} transfers. Most athletes have already made their moves by now, and those enrolled are settled into summer workouts. Portal activity typically spikes at summer's start (May-June) then tapers off in late summer.`;[m
+[31m-                    } else {[m
+[31m-                        insightNote = `At ${formatComma(d.transfer_count)}, this represents a lull in transfer activity during winter break. Yet even quiet post-NIL months reflect how the portal has reshaped college football's rhythm.`;[m
+[31m-                    }[m
+[31m-                } else if (postNilIndex < 3) {[m
+[31m-                    // Early post-NIL months[m
+[31m-                    insightNote = `Early days of the NIL era with ${formatComma(d.transfer_count)} transfers. Athletes and coaches were still learning the new system. By month ${totalPostNilMonths}, patterns emerged: transfers happen faster, earlier in careers, and more strategically.`;[m
+[31m-                } else if (monthName === 'December' || monthName === 'January') {[m
+[31m-                    // Winter transfer window[m
+[31m-                    insightNote = `Winter transfer window activity (${formatComma(d.transfer_count)} transfers). This period sees graduating seniors, mid-year enrollees, and athletes who didn't play much seeking immediate opportunities. Post-NIL, winter windows became as active as spring.`;[m
+[31m-                } else if (monthName === 'May' |
