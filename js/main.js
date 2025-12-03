@@ -176,9 +176,63 @@ function renderCFPTimeline(rawData) {
 }
 
 /**
+ * Compute dynamic y-axis domain and ticks for individual sport views
+ */
+function computeSportYAxis(data) {
+    const maxValue = d3.max(data, d => d.total_transfers);
+    if (!maxValue || maxValue <= 0) {
+        return { domain: [0, 100], tickValues: [0, 25, 50, 75, 100], tickFormat: d => d };
+    }
+
+    // Upper bound: 10% above max
+    const upperBoundRaw = maxValue * 1.1;
+
+    // Choose step size based on range
+    let step;
+
+    if (upperBoundRaw < 300) {
+        // Step of 25 or 50
+        step = upperBoundRaw <= 150 ? 25 : 50;
+    } else if (upperBoundRaw < 2000) {
+        // Step of 100 or 250
+        step = upperBoundRaw <= 1000 ? 100 : 250;
+    } else if (upperBoundRaw < 10000) {
+        // Step of 500 or 1000
+        step = upperBoundRaw <= 5000 ? 500 : 1000;
+    } else {
+        // For larger values, use 1000 increments
+        step = 1000;
+    }
+
+    // Round upper bound up to the next nice step
+    const upperBound = Math.ceil(upperBoundRaw / step) * step;
+
+    // Generate tick values from 0 to upperBound
+    const tickValues = [];
+    for (let i = 0; i <= upperBound; i += step) {
+        tickValues.push(i);
+    }
+
+    // Format ticks: use "k" notation for values >= 1000, otherwise just the number
+    const tickFormat = d => {
+        if (d >= 1000) {
+            return (d / 1000) + "k";
+        }
+        return d;
+    };
+
+    return {
+        domain: [0, upperBound],
+        tickValues: tickValues,
+        tickFormat: tickFormat
+    };
+}
+
+/**
  * Create NCAA yearly timeline visualization (supports sport-level filtering)
  */
-function renderNCAATimeline(rawData) {
+function renderNCAATimeline(rawData, isAllSports = true) {
+    console.log("renderNCAATimeline called with isAllSports:", isAllSports, "rawData length:", rawData.length);
     const data = rawData
         .map(d => ({
             year: +d.year,
@@ -186,6 +240,8 @@ function renderNCAATimeline(rawData) {
         }))
         .filter(d => !Number.isNaN(d.year) && !Number.isNaN(d.total_transfers))
         .sort((a, b) => a.year - b.year);
+
+    console.log("Processed data length:", data.length, "data:", data);
 
     const chartArea = d3.select("#ncaa-chart-area");
     chartArea.selectAll("*").remove();
@@ -208,10 +264,33 @@ function renderNCAATimeline(rawData) {
         .domain(d3.extent(data, d => d.year))
         .range([0, width]);
 
-    const yScale = d3.scaleLinear()
-        .domain([25000, 31000])
-        .nice()
-        .range([height, 0]);
+    // Use fixed scale for "All Sports", dynamic scale for individual sports
+    let yScale, yAxisConfig;
+
+    if (isAllSports) {
+        // Fixed scale for "All Sports" view
+        yScale = d3.scaleLinear()
+            .domain([0, 35000])
+            .range([height, 0]);
+
+        yAxisConfig = {
+            tickValues: [0, 5000, 10000, 15000, 20000, 25000, 30000, 35000],
+            tickFormat: d => (d / 1000) + "k"
+        };
+    } else {
+        // Dynamic scale for individual sport views
+        const axisConfig = computeSportYAxis(data);
+        console.log("Dynamic axis config:", axisConfig, "Max value:", d3.max(data, d => d.total_transfers));
+
+        yScale = d3.scaleLinear()
+            .domain(axisConfig.domain)
+            .range([height, 0]);
+
+        yAxisConfig = {
+            tickValues: axisConfig.tickValues,
+            tickFormat: axisConfig.tickFormat
+        };
+    }
 
     // Create line generator
     const line = d3.line()
@@ -291,8 +370,8 @@ function renderNCAATimeline(rawData) {
 
     // Add y-axis
     const yAxis = d3.axisLeft(yScale)
-        .tickValues([25000, 28000, 31000])
-        .tickFormat(d => d / 1000 + "k");
+        .tickValues(yAxisConfig.tickValues)
+        .tickFormat(yAxisConfig.tickFormat);
 
     svg.append("g")
         .attr("class", "axis y-axis")
@@ -431,13 +510,16 @@ function setupSportFilter(allData, sportData) {
 
     select.addEventListener('change', event => {
         const sport = event.target.value;
+        console.log("Sport filter changed to:", sport);
         if (sport === 'All Sports') {
             if (titleEl) titleEl.textContent = defaultTitle;
-            renderNCAATimeline(allData);
+            console.log("Rendering All Sports with fixed axis");
+            renderNCAATimeline(allData, true); // isAllSports = true
         } else {
             if (titleEl) titleEl.textContent = `NCAA Division I Transfers (${sport})`;
             const rows = sportsMap.get(sport) || [];
-            renderNCAATimeline(rows);
+            console.log("Rendering sport:", sport, "with", rows.length, "rows", "isAllSports=false");
+            renderNCAATimeline(rows, false); // isAllSports = false
         }
     });
 }
@@ -462,7 +544,7 @@ function initVisualizations() {
 
         // Create visualizations with default (all positions/sports) view
         renderCFPTimeline(cfpData);
-        renderNCAATimeline(ncaaData);
+        renderNCAATimeline(ncaaData, true); // isAllSports = true
 
         // Setup position filter for CFP chart
         const parsedPositionRows = cfpPositionData.map(d => ({
@@ -486,4 +568,16 @@ function initVisualizations() {
 }
 
 // Initialize when page loads
-document.addEventListener('DOMContentLoaded', initVisualizations);
+document.addEventListener('DOMContentLoaded', () => {
+    initVisualizations();
+
+    // Handle "Read More" buttons for blurred text
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const container = this.closest('.newspaper-filler-container');
+            if (container) {
+                container.classList.add('revealed');
+            }
+        });
+    });
+});
